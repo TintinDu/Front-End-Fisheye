@@ -9,16 +9,23 @@
       "browser": true,
       "es6": true
     },
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/recommended",
+      "plugin:json/recommended",
+    ],
+    "plugins": [
+      "html",
+      "import",
+      "simple-import-sort",
+      "json"
+  ],
     "rules": {
       "eqeqeq": "warn",
       "indent": ["warn", 2, { "SwitchCase": 1 }],
-      "multiline-ternary": ["warn", "always-multiline"]
-    },
-    "plugins": [
-      "html",
-      "import"
-  ],
-    "extends": [
-      "eslint:recommended"
-    ]
+      "comma-dangle": ["error", "always-multiline"],
+      "semi": ["error", "always"],
+      "json/*": ["error", "allowComments"],
+      "no-trailing-spaces": "error"
+    }
   }
