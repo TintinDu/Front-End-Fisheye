@@ -1,7 +1,7 @@
-import photographerFactory from "./photographer"    
-    
+import photographerFactory from "./photographer";
+
 async function getPhotographers() {
-  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
+  // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet,
   // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
   let photographers = [
     {
@@ -11,7 +11,7 @@ async function getPhotographers() {
       "country": "France",
       "tagline": "Ceci est ma data test",
       "price": 400,
-      "portrait": "account.png"
+      "portrait": "account.png",
     },
     {
       "name": "Autre data test",
@@ -20,12 +20,14 @@ async function getPhotographers() {
       "country": "UK",
       "tagline": "Ceci est ma data test 2",
       "price": 500,
-      "portrait": "account.png"
+      "portrait": "account.png",
     },
-  ]
+  ];
+  console.log(...photographers);
+  console.log({photographers});
   // et bien retourner le tableau photographers seulement une fois récupéré
   return ({
-    photographers: [...photographers, ...photographers, ...photographers]})
+    photographers: [...photographers, ...photographers, ...photographers]});
 }
 
 async function displayData(photographers) {
@@ -35,7 +37,7 @@ async function displayData(photographers) {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
-  }); 
+  });
 }
 
 async function init() {
@@ -43,6 +45,6 @@ async function init() {
   const { photographers } = await getPhotographers();
   displayData(photographers);
 }
-    
+
 init();
-    
+
