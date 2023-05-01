@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function photographerFactory(data) {
   const { name, portrait } = data;
 
@@ -15,5 +16,3 @@ function photographerFactory(data) {
   }
   return { name, picture, getUserCardDOM };
 }
-
-export default photographerFactory;
