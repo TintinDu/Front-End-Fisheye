@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price } = data;
+  const { name, portrait, city, country, tagline, price, id } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
@@ -8,7 +8,7 @@ function photographerFactory(data) {
     const article = document.createElement('article');
     const link = document.createElement('a');
     const img = document.createElement('img');
-    link.setAttribute("href", `photographer.html`);
+    link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", name);
     img.setAttribute("src", picture);
     img.setAttribute("alt", "");
