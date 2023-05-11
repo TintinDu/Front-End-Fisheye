@@ -26,8 +26,8 @@ h1 {
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
+  gap: 10em;
+  margin-top: 4em;
 }
 
 .photographer_section article {
@@ -37,13 +37,34 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
+.photographer_section a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .photographer_section article h2 {
   color: #d3573c;
-  font-size: 36px;
+  font-size: 3em;
 }
 
-.photographer_section article img {
+.photographer_section article .photographer__portrait {
   height: 200px;
   width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* faire dépasser l'image du cercle */
+}
+
+.photographer_section article p {
+  margin: 0;
+}
+
+.photographer__location {
+  color: red;
+}
+.photographer__price {
+  color: grey;
 }
