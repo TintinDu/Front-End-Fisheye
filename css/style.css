@@ -50,7 +50,7 @@ h1 {
   font-size: 3em;
 }
 
-.photographer_section article .photographer__portrait {
+.photographer__portrait {
   height: 200px;
   width: 200px;
   border-radius: 50%;
