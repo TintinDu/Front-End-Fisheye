@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -8,20 +8,18 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <div>
       <img src="assets/images/logo.png" class="logo" />
+    </div>
+    <header class="photograph-header">
+      <button class="contact_button" onclick="displayModal()" aria-label="Contact me">Contactez-moi</button>
     </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<div>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
+        </div>
 				<form>
 					<div>
 						<label>Prénom</label>
@@ -31,6 +29,8 @@
 				</form>
 			</div>
 		</div>
+    <main class="main"></main>
+    <script src="/scripts/factories/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
