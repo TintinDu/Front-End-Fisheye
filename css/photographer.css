@@ -75,14 +75,16 @@ form input {
   border-radius: 5px;
 }
 
-.photograph-media {
+.photograph-medias {
+  margin: 0 6em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2em;
-  margin-top: 4em;
+  gap: 1em;
+  margin-top: 2em;
 }
 
 .photographer__photograph {
   object-fit: cover;
-  width: 300px;
+  width: 350px;
+  height: 200px;
 }
