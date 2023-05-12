@@ -35,23 +35,23 @@
           <div id="contact_modal" class="modal">
             <div class="modal__header">
               <h2>Contactez-moi</h2>
-              <img src="assets/icons/close.svg" onclick="closeModal()" />
+              <img src="assets/icons/close.svg" onclick="closeModal()" alt="closeModal" />
             </div>
             <form name="contactForm" id="contactForm" method="post" novalidate>
               <div class="formData parentFirst">
-                <label>Prénom</label>
+                <label for="firstname">Prénom</label>
                 <input class="text-input" id="firstname" name="firstname" />
               </div>
               <div class="formData parentLast">
-                <label>Nom</label>
+                <label for="lastname">Nom</label>
                 <input class="text-input" id="lastname" name="lastname" />
               </div>
               <div class="formData parentEmail">
-                <label>Email</label>
+                <label for="email">Email</label>
                 <input class="text-input" id="email" name="email" />
               </div>
               <div class="formData parentMessage">
-                <label>Votre message</label>
+                <label for="message">Votre message</label>
                 <textarea
                   class="text-input"
                   id="message"

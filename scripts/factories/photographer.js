@@ -62,10 +62,11 @@ function photographerFactoryPhotographer(data) {
     return (flexbox);
   }
 
+  console.log(portrait);
   function getUserAvatar() {
     const img = document.createElement('img');
     img.setAttribute("src", picture);
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", `${name}'s portrait`);
     img.className = "photographer__portrait";
     return (img);
   }
