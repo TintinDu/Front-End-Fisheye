@@ -35,7 +35,11 @@ function mediaFactory(data) {
     const videoName = video.video;
     const videoPath =`assets/images/${name}/${videoName}`;
     const vid = document.createElement('video');
-    vid.setAttribute("src", videoPath);
+    const source = document.createElement('source');
+    source.setAttribute("src", videoPath);
+    source.setAttribute("type", "video/mp4");
+    vid.setAttribute("controls", "controls");
+    vid.appendChild(source);
     vid.className = "photographer__media";
     return (vid);
   });
