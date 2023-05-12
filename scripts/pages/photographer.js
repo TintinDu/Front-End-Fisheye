@@ -1,4 +1,3 @@
-//Mettre le code JavaScript lié à la page photographer.html
 /* eslint-disable no-undef */
 async function getOnePhotographer() {
 
@@ -25,21 +24,27 @@ async function getOnePhotographer() {
   return photographerData;
 }
 
-async function displayData(photographer) {
+async function displayData(data) {
   const photographerHeader = document.querySelector(".personal-informations");
   const photographerAvatar = document.querySelector(".photograph-avatar");
   const mediasSection = document.querySelector(".photograph-medias");
-  const photographerModel = photographerFactoryPhotographer(photographer);
+  const containerLike = document.querySelector('.container__like');
+  const photographerModel = photographerFactoryPhotographer(data);
+  const mediaModel = mediaFactory(data);
   const userHeaderDOM = photographerModel.getUserHeaderDOM();
   const userAvatar = photographerModel.getUserAvatar();
-  const userMedias = photographerModel.getUserMedia();
+  const userPrice = photographerModel.getUserPrice();
+  const userPhotos = mediaModel.getUserPhotographs();
+  const userVideos = mediaModel.getUserVideos();
   photographerHeader.appendChild(userHeaderDOM);
   photographerAvatar.appendChild(userAvatar);
-  console.log(userMedias);
-  userMedias.map((userMedia) => {
+  containerLike.appendChild(userPrice);
+  userPhotos.map((userMedia) => {
     mediasSection.appendChild(userMedia);
   });
-
+  userVideos.map((userVideo) => {
+    mediasSection.appendChild(userVideo);
+  });
 
 }
 
