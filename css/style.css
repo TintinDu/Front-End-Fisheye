@@ -63,8 +63,11 @@ h1 {
 }
 
 .photographer__location {
-  color: red;
+  color: #901c1c;
 }
+/* .photographer__tagline {
+  color: #525252;
+} */
 .photographer__price {
-  color: grey;
+  color: #757575;
 }

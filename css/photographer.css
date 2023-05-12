@@ -6,6 +6,9 @@
   background-color: #fafafa;
   height: 300px;
   margin: 0 100px;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 .contact_button {
@@ -83,8 +86,36 @@ form input {
   margin-top: 2em;
 }
 
-.photographer__photograph {
+.personal-informations {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.photographer__name {
+  color: #d3573c;
+}
+
+.photographer__media {
   object-fit: cover;
   width: 350px;
   height: 200px;
+}
+
+.container__like {
+  display: flex;
+  position: fixed;
+  left: 72vw;
+  right: 50vw;
+  top: 93%;
+  background: #db8876;
+  height: 89px;
+  width: 376px;
+  border-radius: 5px;
+}
+
+.container__like .price {
+  align-self: center;
+  margin-left: auto;
+  margin-right: 1em;
 }
