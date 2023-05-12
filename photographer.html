@@ -2,38 +2,70 @@
 <html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <a href="index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
     </a>
     <header class="photograph-header">
       <div class="personal-informations"></div>
-      <button class="contact_button" onclick="displayModal()" aria-label="Contact me">Contactez-moi</button>
+      <button
+        class="contact_button"
+        onclick="displayModal()"
+        aria-label="Contact me"
+      >
+        Contactez-moi
+      </button>
       <div class="photograph-avatar"></div>
     </header>
-    <div id="contact_modal">
-			<div class="modal">
-				<div>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </div>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+
     <main class="main">
+
       <section class="photograph-medias"></section>
+
+      <div class="background">
+        <div class="content">
+          <div id="contact_modal" class="modal">
+            <div class="modal__header">
+              <h2>Contactez-moi</h2>
+              <img src="assets/icons/close.svg" onclick="closeModal()" />
+            </div>
+            <form name="contactForm" id="contactForm" method="post" novalidate>
+              <div class="formData parentFirst">
+                <label>Prénom</label>
+                <input class="text-input" id="firstname" name="firstname" />
+              </div>
+              <div class="formData parentLast">
+                <label>Nom</label>
+                <input class="text-input" id="lastname" name="lastname" />
+              </div>
+              <div class="formData parentEmail">
+                <label>Email</label>
+                <input class="text-input" id="email" name="email" />
+              </div>
+              <div class="formData parentMessage">
+                <label>Votre message</label>
+                <textarea
+                  class="text-input"
+                  id="message"
+                  name="message"
+                ></textarea>
+              </div>
+              <input class="contact_button" type="submit" value="Envoyer" />
+            </form>
+          </div>
+        </div>
+      </div>
+
     </main>
+
     <div class="container__like"></div>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>
