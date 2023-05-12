@@ -27,6 +27,7 @@ function mediaFactory(data) {
     const imagePath = `assets/images/${name}/${imageName}`;
     const img = document.createElement('img');
     img.setAttribute("src", imagePath);
+    img.setAttribute("alt", image.title);
     img.className = "photographer__media";
     return (img);
   });
