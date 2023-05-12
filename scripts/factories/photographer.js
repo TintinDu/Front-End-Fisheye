@@ -37,8 +37,7 @@ function photographerFactoryHomepage(data) {
 
 function photographerFactoryPhotographer(data) {
 
-  const { name, portrait, city, country, tagline} = data.photographer;
-  const medias = data.photographerMedia;
+  const { name, portrait, city, price, country, tagline} = data.photographer;
   const picture = `assets/photographers/${portrait}`;
 
   function getUserHeaderDOM() {
@@ -46,6 +45,7 @@ function photographerFactoryPhotographer(data) {
     const personalInformationsDiv = document.createElement('div');
     const h1 = document.createElement('h1');
     h1.textContent = name;
+    h1.className = "photographer__name";
     const p1 = document.createElement('p');
     p1.textContent = city + ", " + country;
     p1.className = "photographer__location";
@@ -70,17 +70,12 @@ function photographerFactoryPhotographer(data) {
     return (img);
   }
 
-  const images = medias.map((media) => {
-    const imageName = media.image;
-    const image = `assets/images/${name}/${imageName}`;
-    const img = document.createElement('img');
-    img.setAttribute("src", image);
-    img.className = "photographer__photograph";
-    return (img);
-  });
-
-  function getUserMedia() {
-    return (images);
+  function getUserPrice() {
+    const p = document.createElement('p');
+    p.textContent = `${price}€ / jour`;
+    p.className = "price";
+    return (p);
   }
-  return { name, picture, images, getUserHeaderDOM, getUserAvatar, getUserMedia };
+
+  return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice };
 }
