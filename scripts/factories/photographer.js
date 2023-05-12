@@ -77,5 +77,5 @@ function photographerFactoryPhotographer(data) {
     return (p);
   }
 
-  return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice };
+  return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice};
 }

@@ -36,6 +36,10 @@ async function displayData(data) {
   const userPrice = photographerModel.getUserPrice();
   const userPhotos = mediaModel.getUserPhotographs();
   const userVideos = mediaModel.getUserVideos();
+
+  const modalHeader = document.querySelector(".modal__header > h2");
+  modalHeader.innerHTML = "Contactez-moi" + "<br>" + data.photographer.name;
+
   photographerHeader.appendChild(userHeaderDOM);
   photographerAvatar.appendChild(userAvatar);
   containerLike.appendChild(userPrice);
