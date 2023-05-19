@@ -4,8 +4,13 @@ const header = document.querySelector("header");
 const photographerHeader = document.querySelector(".photograph-header");
 const gallery = document.querySelector(".gallery");
 const containerLike = document.querySelector(".container__like");
-const modal = document.getElementById("contact_modal");
-const modalbackground = document.querySelector(".background");
+const photographerMedias = document.querySelectorAll(".photographer__media");
+const contactModal = document.getElementById("contact_modal");
+const lightboxModal = document.getElementById("lightbox");
+const contactBackground = document.querySelector(".contactBackground");
+const lightboxBackground = document.querySelector(".lightboxBackground");
+// const modalMedia = document.querySelector("#lightbox");
+const mediaLinks = document.querySelectorAll(".media__link");
 const form = document.querySelector("#contactForm");
 const formD = document.querySelectorAll(".formData");
 const firstName = document.querySelector("#firstname");
@@ -162,8 +167,8 @@ function isValidOnSubmit() {
   return areAllInputsValidOnSubmit;
 }
 
-function displayModal() {
-  modalbackground.style.display = "block";
+function displayContactModal() {
+  contactBackground.style.display = "block";
   modalTitle.focus();
   photographerHeader.setAttribute("aria-hidden", true);
   gallery.setAttribute("aria-hidden", true);
@@ -171,17 +176,17 @@ function displayModal() {
   containerLike.setAttribute("aria-hidden", true);
 }
 
-function closeModal() {
-  modalbackground.style.display = "none";
+function closeContactModal() {
+  contactBackground.style.display = "none";
   photographerHeader.setAttribute("aria-hidden", false);
   gallery.setAttribute("aria-hidden", false);
   header.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
 }
 
-const closeModalWithEsc = (event) =>  {
+const closeContactModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
-    modalbackground.style.display = "none";
+    contactBackground.style.display = "none";
     photographerHeader.setAttribute("aria-hidden", false);
     gallery.setAttribute("aria-hidden", false);
     header.setAttribute("aria-hidden", false);
@@ -189,6 +194,45 @@ const closeModalWithEsc = (event) =>  {
   }
 };
 
+function displayLightbox(tag, id) {
+  lightboxBackground.style.display = "block";
+
+  if(tag === "IMG") {
+    const imageToOpen = document.getElementById(id);
+    const img = document.createElement("img");
+    const div = document.createElement("div");
+    img.src = imageToOpen.src;
+    img.setAttribute('id', id);
+    div.setAttribute("class", "lightbox__media lightbox__image");
+    div.appendChild(img);
+    lightboxModal.appendChild(div);
+  }
+
+  if(tag === "VIDEO") {
+    const sourceToOpen = document.getElementById(`${id}source`);
+    const vid = document.createElement("video");
+    const source = document.createElement("source");
+    const div = document.createElement("div");
+    source.src = sourceToOpen.src;
+    source.setAttribute('id', id);
+    vid.appendChild(source);
+    vid.setAttribute("controls", "controls");
+    div.setAttribute("class", "lightbox__media lightbox__video");
+    div.appendChild(vid);
+    lightboxModal.appendChild(div);
+  }
+
+}
+
+function closeLightbox() {
+  lightboxBackground.style.display = "none";
+}
+
+const closeLightboxModalWithEsc = (event) =>  {
+  if (event.key === 'Escape') {
+    lightboxBackground.style.display = "none";
+  }
+};
 
 function sendContactForm() {
   form.addEventListener("submit", (event) => {
@@ -211,4 +255,17 @@ email.addEventListener("change", validateOnChange("#email"));
 message.addEventListener("change", validateOnChange("#message"));
 
 contactBtn.addEventListener("click", sendContactForm());
-window.addEventListener("keydown", closeModalWithEsc);
+
+// mediaLinks.forEach(media => {
+//   media.addEventListener("click", displayLightbox());
+// });
+
+// photographerMedias.forEach(media => {
+//   media.addEventListener("click", (e) => {
+//     console.log("event", e);
+//   });
+// });
+
+
+
+window.addEventListener("keydown", closeContactModalWithEsc);

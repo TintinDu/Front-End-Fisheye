@@ -29,18 +29,18 @@ function mediaFactory(data) {
     const imageTitle = image.title;
     const imagePath = `assets/images/${name}/${imageName}`;
     const img = document.createElement('img');
-    const link = document.createElement('a');
     const title = document.createElement('h3');
     title.textContent = imageTitle;
     img.setAttribute("src", imagePath);
-    img.setAttribute("alt", `open ligthbox for ${image.title}`);
-    link.setAttribute("href", "#");
+    img.setAttribute("alt", `open lightbox for ${image.title}`);
+    img.setAttribute("id", image.id);
+    img.style.cursor = "pointer";
     img.className = "photographer__media";
     imageArticle.className = "media__container";
-    link.appendChild(img);
-    imageArticle.appendChild(link);
+    imageArticle.appendChild(img);
     imageArticle.appendChild(div);
     div.appendChild(title);
+    // link.setAttribute("onclick", `displayLightbox(${imagePath},${img.id})`);
     return (imageArticle);
   });
 
@@ -51,22 +51,23 @@ function mediaFactory(data) {
     const videoTitle = video.title;
     const videoPath =`assets/images/${name}/${videoName}`;
     const vid = document.createElement('video');
-    const link = document.createElement('a');
     const title = document.createElement('h3');
     title.textContent = videoTitle;
     const source = document.createElement('source');
     source.setAttribute("src", videoPath);
     source.setAttribute("type", "video/mp4");
     vid.setAttribute("controls", "controls");
+    vid.setAttribute("id", video.id);
+    source.setAttribute("id", `${video.id}source`);
     vid.appendChild(source);
-    link.setAttribute("href", "#");
-    link.setAttribute("aria-label", `open ligthbox for ${video.title}`);
+    vid.style.cursor = "pointer";
+    vid.setAttribute("aria-label", `open lightbox for ${video.title}`);
     vid.className = "photographer__media";
     videoArticle.className = "media__container";
-    link.appendChild(vid);
-    videoArticle.appendChild(link);
+    videoArticle.appendChild(vid);
     videoArticle.appendChild(div);
     div.appendChild(title);
+    // link.setAttribute("onclick", `displayLightbox(${vid.id})`);
     return (videoArticle);
   });
 
@@ -76,5 +77,6 @@ function mediaFactory(data) {
   function getUserVideos() {
     return (vids);
   }
+
   return { name, imgs, vids, getUserPhotographs, getUserVideos };
 }

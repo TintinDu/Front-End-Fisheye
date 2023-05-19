@@ -37,7 +37,7 @@ async function displayData(data) {
   const userPhotos = mediaModel.getUserPhotographs();
   const userVideos = mediaModel.getUserVideos();
 
-  const modalHeader = document.querySelector(".modal__header > h2");
+  const modalHeader = document.querySelectorAll(".modal__header > h2");
   modalHeader.innerHTML = "Contactez-moi" + "<br>" + data.photographer.name;
 
   photographerHeader.appendChild(userHeaderDOM);
@@ -50,11 +50,30 @@ async function displayData(data) {
     mediasSection.appendChild(userVideo);
   });
 
+  // lightbox
+  const photos = document.querySelectorAll(".photographer__media");
+
+  console.log(photos);
+
+  photos.forEach((photo)=> {
+    photo.addEventListener("click", (e) => {
+      console.log("event", e);
+      console.log("event2", e.target.tagName);
+      console.log("event2", e.target.id);
+      displayLightbox(e.target.tagName, e.target.id);
+    });
+  });
+
 }
 
 async function initializeOnePhotographer() {
   const photographer = await getOnePhotographer();
   displayData(photographer);
+
 }
 
+
 initializeOnePhotographer();
+
+
+console.log(document);
