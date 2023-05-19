@@ -62,7 +62,6 @@ function photographerFactoryPhotographer(data) {
     return (flexbox);
   }
 
-  console.log(portrait);
   function getUserAvatar() {
     const img = document.createElement('img');
     img.setAttribute("src", picture);
@@ -77,6 +76,7 @@ function photographerFactoryPhotographer(data) {
     p.className = "price";
     return (p);
   }
+
 
   return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice};
 }
