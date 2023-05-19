@@ -33,9 +33,8 @@ function mediaFactory(data) {
     const title = document.createElement('h3');
     title.textContent = imageTitle;
     img.setAttribute("src", imagePath);
-    img.setAttribute("alt", image.title);
+    img.setAttribute("alt", `open ligthbox for ${image.title}`);
     link.setAttribute("href", "#");
-    link.setAttribute("aria-label", `open ligthbox for ${image.title}`);
     img.className = "photographer__media";
     imageArticle.className = "media__container";
     link.appendChild(img);

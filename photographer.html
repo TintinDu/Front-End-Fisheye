@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html">
+      <a href="index.html" role="navigation to homepage">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
     </header>
@@ -30,45 +30,46 @@
 
     <main class="main">
 
-      <section>
-        <h2>
-          <label for="">Trier par</label>
-        </h2>
+      <section class="gallery">
+        <h2 class="gallery__Title">Gallerie</h2>
+        <p role="input label"> Trier par </p>
         <div class="photograph-medias">
         </div>
       </section>
 
       <div class="background">
         <div class="content">
-          <div id="contact_modal" class="modal">
+          <section id="contact_modal" class="modal" aria-labelledby="contactMe" role="dialog">
             <div class="modal__header">
-              <h2>Contactez-moi</h2>
-              <img src="assets/icons/close.svg" onclick="closeModal()" alt="closeModal" />
+              <h2 id="contactMe" tabindex="1">Contactez-moi</h2>
+              <img src="assets/icons/close.svg" onclick="closeModal()" alt="closeModal" class="btn-close" />
             </div>
             <form name="contactForm" id="contactForm" method="post" novalidate>
               <div class="formData parentFirst">
                 <label for="firstname">Prénom</label>
-                <input class="text-input" id="firstname" name="firstname" />
+                <input class="text-input" id="firstname" name="firstname" aria-required=true tabindex="1" />
               </div>
               <div class="formData parentLast">
                 <label for="lastname">Nom</label>
-                <input class="text-input" id="lastname" name="lastname" />
+                <input class="text-input" id="lastname" name="lastname" aria-required=true tabindex="1"/>
               </div>
               <div class="formData parentEmail">
                 <label for="email">Email</label>
-                <input class="text-input" id="email" name="email" />
+                <input class="text-input" id="email" name="email" aria-required=true tabindex="1"/>
               </div>
               <div class="formData parentMessage">
                 <label for="message">Votre message</label>
                 <textarea
-                  class="text-input"
+                  class="text-input text-area"
                   id="message"
                   name="message"
+                  aria-required=true
+                  tabindex="1"
                 ></textarea>
               </div>
-              <input class="contact_button" type="submit" value="Envoyer" />
+              <input class="contact_button contact_button__modal" type="submit" value="Envoyer" tabindex="1"/>
             </form>
-          </div>
+          </section>
         </div>
       </div>
 
