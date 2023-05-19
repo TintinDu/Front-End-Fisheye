@@ -11,7 +11,7 @@ function photographerFactoryHomepage(data) {
     link.setAttribute("href", `photographer.html?id=${id}`);
     link.setAttribute("aria-label", name);
     img.setAttribute("src", picture);
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", `${name}'s portrait`);
     img.className = "photographer__portrait";
     const h2 = document.createElement('h2');
     h2.textContent = name;
