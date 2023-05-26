@@ -71,6 +71,11 @@
 .lightboxContent {
   position: relative;
   color: #312e2e;
+  height: 984px;
+  width: 1253px;
+  left: 101px;
+  top: 40px;
+  border-radius: 0px;
 }
 
 .modal {
@@ -90,6 +95,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 984px;
 }
 
 /* .lightbox__media {
@@ -100,6 +106,37 @@
   width: 1050px;
   height: 900px;
   object-fit: cover;
+}
+
+.lightbox__header {
+  align-self: flex-start;
+  margin-left: 100px;
+  color: #901c1c;
+}
+
+.btn-close {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(204deg)
+    brightness(104%) contrast(102%);
+}
+
+.btn-lightbox {
+  filter: invert(15%) sepia(31%) saturate(6876%) hue-rotate(352deg)
+    brightness(90%) contrast(87%);
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 0;
+  top: 400px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 0;
+  top: 400px;
 }
 
 .modal__header {
