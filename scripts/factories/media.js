@@ -31,16 +31,17 @@ function mediaFactory(data) {
     const img = document.createElement('img');
     const title = document.createElement('h3');
     title.textContent = imageTitle;
+    title.className = "media__title";
     img.setAttribute("src", imagePath);
     img.setAttribute("alt", `open lightbox for ${image.title}`);
     img.setAttribute("id", image.id);
+    img.setAttribute("name", imageTitle);
     img.style.cursor = "pointer";
     img.className = "photographer__media";
     imageArticle.className = "media__container";
     imageArticle.appendChild(img);
     imageArticle.appendChild(div);
     div.appendChild(title);
-    // link.setAttribute("onclick", `displayLightbox(${imagePath},${img.id})`);
     return (imageArticle);
   });
 
@@ -53,21 +54,22 @@ function mediaFactory(data) {
     const vid = document.createElement('video');
     const title = document.createElement('h3');
     title.textContent = videoTitle;
+    title.className = "media__title";
     const source = document.createElement('source');
     source.setAttribute("src", videoPath);
     source.setAttribute("type", "video/mp4");
     vid.setAttribute("controls", "controls");
     vid.setAttribute("id", video.id);
+    vid.setAttribute("title", videoTitle);
     source.setAttribute("id", `${video.id}source`);
     vid.appendChild(source);
     vid.style.cursor = "pointer";
-    vid.setAttribute("aria-label", `open lightbox for ${video.title}`);
+    vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
     vid.className = "photographer__media";
     videoArticle.className = "media__container";
     videoArticle.appendChild(vid);
     videoArticle.appendChild(div);
     div.appendChild(title);
-    // link.setAttribute("onclick", `displayLightbox(${vid.id})`);
     return (videoArticle);
   });
 

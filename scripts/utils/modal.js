@@ -6,10 +6,8 @@ const gallery = document.querySelector(".gallery");
 const containerLike = document.querySelector(".container__like");
 const photographerMedias = document.querySelectorAll(".photographer__media");
 const contactModal = document.getElementById("contact_modal");
-const lightboxModal = document.getElementById("lightbox");
 const contactBackground = document.querySelector(".contactBackground");
 const lightboxBackground = document.querySelector(".lightboxBackground");
-// const modalMedia = document.querySelector("#lightbox");
 const mediaLinks = document.querySelectorAll(".media__link");
 const form = document.querySelector("#contactForm");
 const formD = document.querySelectorAll(".formData");
@@ -194,43 +192,61 @@ const closeContactModalWithEsc = (event) =>  {
   }
 };
 
-function displayLightbox(tag, id) {
+function displayLightbox(id) {
+  console.log(id);
   lightboxBackground.style.display = "block";
-
-  if(tag === "IMG") {
-    const imageToOpen = document.getElementById(id);
-    const img = document.createElement("img");
-    const div = document.createElement("div");
-    const h4 = document.createElement("h4");
-    img.src = imageToOpen.src;
-    img.setAttribute('id', id);
-    h4.innerText = "toto";
-    h4.className = "lightbox__header";
-    div.setAttribute("class", "lightbox__media lightbox__image");
-    div.appendChild(img);
-    lightboxModal.appendChild(div);
-    lightboxModal.appendChild(h4);
-  }
-
-  if(tag === "VIDEO") {
-    const sourceToOpen = document.getElementById(`${id}source`);
-    const vid = document.createElement("video");
-    const source = document.createElement("source");
-    const div = document.createElement("div");
-    const h4 = document.createElement("h4");
-    source.src = sourceToOpen.src;
-    source.setAttribute('id', id);
-    h4.innerText = "toto";
-    h4.className = "lightbox__header";
-    vid.appendChild(source);
-    vid.setAttribute("controls", "controls");
-    div.setAttribute("class", "lightbox__media lightbox__video");
-    div.appendChild(vid);
-    lightboxModal.appendChild(div);
-    lightboxModal.appendChild(h4);
-  }
-
+  const slide = document.getElementById(`slide${id}`);
+  console.log(slide);
+  slide.style.display = "block";
 }
+
+// function displayLightbox(tag, id, name, slide) {
+// lightboxBackground.style.display = "block";
+//   const lightboxModal = document.getElementById("lightbox");
+
+
+//   if(tag === "IMG") {
+//     const imageToOpen = document.getElementById(id);
+//     const img = document.createElement("img");
+//     const div = document.createElement("div");
+//     const h4 = document.createElement("h4");
+//     img.src = imageToOpen.src;
+//     img.setAttribute('id', id);
+//     h4.innerText = name;
+//     h4.className = "lightbox__header";
+//     div.setAttribute("class", "lightbox__media lightbox__image");
+//     div.appendChild(img);
+//     lightboxModal.appendChild(div);
+//     lightboxModal.appendChild(h4);
+//   }
+
+//   if(tag === "VIDEO") {
+//     const sourceToOpen = document.getElementById(`${id}source`);
+//     const vid = document.createElement("video");
+//     const source = document.createElement("source");
+//     const div = document.createElement("div");
+//     const h4 = document.createElement("h4");
+//     source.src = sourceToOpen.src;
+//     source.setAttribute('id', id);
+//     h4.innerText = name;
+//     h4.className = "lightbox__header";
+//     vid.appendChild(source);
+//     vid.setAttribute("controls", "controls");
+//     div.setAttribute("class", "lightbox__media lightbox__video");
+//     div.appendChild(vid);
+//     lightboxModal.appendChild(div);
+//     lightboxModal.appendChild(h4);
+//   }
+
+// }
+
+// const changeMediaLightbox = (event) => {
+//   if (event.key === "") {
+// goToNextSlide()
+//   } else if (event.key === "") {
+// goToPreviousSlid()
+//   }
+// };
 
 function closeLightbox() {
   lightboxBackground.style.display = "none";
@@ -264,16 +280,5 @@ message.addEventListener("change", validateOnChange("#message"));
 
 contactBtn.addEventListener("click", sendContactForm());
 
-// mediaLinks.forEach(media => {
-//   media.addEventListener("click", displayLightbox());
-// });
-
-// photographerMedias.forEach(media => {
-//   media.addEventListener("click", (e) => {
-//     console.log("event", e);
-//   });
-// });
-
-
-
 window.addEventListener("keydown", closeContactModalWithEsc);
+window.addEventListener("keydown", closeLightboxModalWithEsc);
