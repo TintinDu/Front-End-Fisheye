@@ -201,11 +201,15 @@ function displayLightbox(tag, id) {
     const imageToOpen = document.getElementById(id);
     const img = document.createElement("img");
     const div = document.createElement("div");
+    const h4 = document.createElement("h4");
     img.src = imageToOpen.src;
     img.setAttribute('id', id);
+    h4.innerText = "toto";
+    h4.className = "lightbox__header";
     div.setAttribute("class", "lightbox__media lightbox__image");
     div.appendChild(img);
     lightboxModal.appendChild(div);
+    lightboxModal.appendChild(h4);
   }
 
   if(tag === "VIDEO") {
@@ -213,13 +217,17 @@ function displayLightbox(tag, id) {
     const vid = document.createElement("video");
     const source = document.createElement("source");
     const div = document.createElement("div");
+    const h4 = document.createElement("h4");
     source.src = sourceToOpen.src;
     source.setAttribute('id', id);
+    h4.innerText = "toto";
+    h4.className = "lightbox__header";
     vid.appendChild(source);
     vid.setAttribute("controls", "controls");
     div.setAttribute("class", "lightbox__media lightbox__video");
     div.appendChild(vid);
     lightboxModal.appendChild(div);
+    lightboxModal.appendChild(h4);
   }
 
 }
