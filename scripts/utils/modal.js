@@ -31,6 +31,8 @@ const inputMessage = document.querySelector(".parentMessage > textarea");
 const btnClose = document.querySelector(".btn-close");
 const previousSlide = document.querySelector('.left-arrow');
 const nextSlide = document.querySelector('.right-arrow');
+let currentIndex = 0;
+let userMedias = [];
 
 const nameRegex = new RegExp("[a-zA-ZÀ-ÖØ-öø-ÿ-]{2,15}");
 const emailRegex = new RegExp("[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,13}");
@@ -208,7 +210,6 @@ function getDataForLightbox(media, tagName) {
   vid.className = "lightbox__vid";
   source.className = "lightbox__source";
   header.className = "lightbox__header";
-  console.log("toto");
 
   header.innerText = media.title;
   if (tagName === "IMG") {
@@ -282,20 +283,11 @@ function displayLightbox(id, tagName, array) {
 
   lightboxBackground.style.display = "block";
 
-  let index = array.indexOf(media);
-
-  previousSlide.addEventListener("click", () => {
-    // if() {
-    displayPreviousMedia(array, index);
-
-    // }
-
-  });
-  nextSlide.addEventListener("click", () => {
-    displayNextMedia(array, index);
-  });
+  currentIndex = array.indexOf(media);
+  userMedias = array;
 
 }
+
 
 const clearLightbox = () => {
   const lightboxMedia = document.querySelector(".lightbox__media");
@@ -318,66 +310,57 @@ function getTagName(media) {
 }
 
 
-function displayPreviousMedia(array, index) {
-  let newIndex = index;
-  let newMedia;
+function displayPreviousMedia(array) {
+  // currentIndex = (currentIndex - 1 + array.length)%array.length;
+  let newMedia = array[currentIndex];
 
   clearLightbox();
 
-  if  (index === 0) {
+  if  (currentIndex === 0) {
     newMedia = array[array.length - 1];
     const tagName = getTagName(newMedia);
-    newIndex = array.length;
+    currentIndex = array.length - 1;
 
     getDataForLightbox(newMedia, tagName);
 
   } else {
-    newMedia = array[index - 1];
+    newMedia = array[currentIndex - 1];
     const tagName = getTagName(newMedia);
-    newIndex --;
+    currentIndex --;
 
     getDataForLightbox(newMedia, tagName);
 
   }
-
-  previousSlide.addEventListener("click", () => {
-    displayPreviousMedia(array, newIndex);
-  });
-  nextSlide.addEventListener("click", () => {
-    displayNextMedia(array, newIndex);
-  });
 }
 
-function displayNextMedia(array, index) {
-  let newIndex = index;
-  let newMedia;
+function displayNextMedia(array) {
+  // currentIndex = (currentIndex + 1 + array.length)%array.length;
+  let newMedia = array[currentIndex];
 
   clearLightbox();
 
-  if  (index === array.length - 1) {
+  if  (currentIndex === array.length - 1) {
     newMedia = array[0];
     const tagName = getTagName(newMedia);
-    newIndex = 0;
+    currentIndex = 0;
 
 
     getDataForLightbox(newMedia, tagName);
   } else {
-    newMedia = array[index + 1];
+    newMedia = array[currentIndex + 1];
     const tagName = getTagName(newMedia);
-    newIndex ++;
+    currentIndex ++;
 
     getDataForLightbox(newMedia, tagName);
   }
-
-
-  previousSlide.addEventListener("click", () => {
-    displayPreviousMedia(array, newIndex);
-  });
-  nextSlide.addEventListener("click", () => {
-    displayNextMedia(array, newIndex);
-  });
 }
 
+previousSlide.addEventListener("click", () => {
+  displayPreviousMedia(userMedias);
+});
+nextSlide.addEventListener("click", () => {
+  displayNextMedia(userMedias);
+});
 
 // function ChangeAttributeForImage(media, lightboxImg) {
 
