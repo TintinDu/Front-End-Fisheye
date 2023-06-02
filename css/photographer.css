@@ -211,6 +211,16 @@ form input {
   height: 200px;
 }
 
+.title__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.media__likes {
+  display: flex;
+  align-self: flex-start;
+}
+
 .media__title {
   color: #901c1c;
 }

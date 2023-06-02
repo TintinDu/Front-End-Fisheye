@@ -311,7 +311,6 @@ function getTagName(media) {
 
 
 function displayPreviousMedia(array) {
-  // currentIndex = (currentIndex - 1 + array.length)%array.length;
   let newMedia = array[currentIndex];
 
   clearLightbox();
@@ -334,7 +333,6 @@ function displayPreviousMedia(array) {
 }
 
 function displayNextMedia(array) {
-  // currentIndex = (currentIndex + 1 + array.length)%array.length;
   let newMedia = array[currentIndex];
 
   clearLightbox();
@@ -361,29 +359,13 @@ previousSlide.addEventListener("click", () => {
 nextSlide.addEventListener("click", () => {
   displayNextMedia(userMedias);
 });
-
-// function ChangeAttributeForImage(media, lightboxImg) {
-
-//   lightboxImg.setAttribute("src", `assets/images/${media.authorName}/${media.image}`);
-// }
-
-// function ChangeAttributeForVideo(media, lightboxVid, lightboxSource) {
-//   lightboxSource.setAttribute("src", `assets/images/${media.authorName}/${media.video}`);
-//   lightboxSource.setAttribute("type", "video/mp4");
-//   lightboxVid.setAttribute("id", media.id);
-//   lightboxVid.setAttribute("title", media.title);
-//   lightboxVid.setAttribute("controls", "controls");
-// }
-
-// window.addEventListener("keyboard", (event) => {
-//   if (event.key === "ArrowLeft") {
-//     displayNextImage(id);
-//   } else if (event.key === "ArrowRight") {
-//     displayPreviousImage(id);
-//   }
-// });
-
-
+window.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowLeft") {
+    displayPreviousMedia(userMedias);
+  } else if (event.key === "ArrowRight") {
+    displayNextMedia(userMedias);
+  }
+});
 
 
 function closeLightbox() {

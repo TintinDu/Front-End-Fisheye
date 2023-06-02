@@ -54,11 +54,12 @@ async function displayData(data) {
 
   // lightbox
   const medias = document.querySelectorAll(".photographer__media");
-  const arrayForCarousel = userPhotoCarousel.concat(userVideoCarousel);
+  const userMediaArray = userPhotoCarousel.concat(userVideoCarousel);
+  console.log(userMediaArray);
 
   medias.forEach((media) => {
     media.addEventListener("click", () => {
-      displayLightbox(media.id, media.tagName, arrayForCarousel );
+      displayLightbox(media.id, media.tagName, userMediaArray);
     });
   });
 
