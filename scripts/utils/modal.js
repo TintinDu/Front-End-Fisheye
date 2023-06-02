@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-const header = document.querySelector("header");
+const modalHeader = document.querySelector("header");
 const photographerHeader = document.querySelector(".photograph-header");
 const gallery = document.querySelector(".gallery");
 const containerLike = document.querySelector(".container__like");
@@ -9,7 +9,8 @@ const contactModal = document.getElementById("contact_modal");
 const contactBackground = document.querySelector(".contactBackground");
 const lightboxBackground = document.querySelector(".lightboxBackground");
 const lightbox = document.querySelector("#lightbox");
-const lightboxDiv = document.querySelector(".lightbox__container");
+const lightboxDiv = document.querySelector(".lightbox__media");
+const lightboxMedia = document.querySelector(".carousel");
 const lightboxHeader = document.querySelector(".lightbox__header");
 const form = document.querySelector("#contactForm");
 const formD = document.querySelectorAll(".formData");
@@ -174,7 +175,7 @@ function displayContactModal() {
   modalTitle.focus();
   photographerHeader.setAttribute("aria-hidden", true);
   gallery.setAttribute("aria-hidden", true);
-  header.setAttribute("aria-hidden", true);
+  modalHeader.setAttribute("aria-hidden", true);
   containerLike.setAttribute("aria-hidden", true);
 }
 
@@ -182,7 +183,7 @@ function closeContactModal() {
   contactBackground.style.display = "none";
   photographerHeader.setAttribute("aria-hidden", false);
   gallery.setAttribute("aria-hidden", false);
-  header.setAttribute("aria-hidden", false);
+  modalHeader.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
 }
 
@@ -191,137 +192,205 @@ const closeContactModalWithEsc = (event) =>  {
     contactBackground.style.display = "none";
     photographerHeader.setAttribute("aria-hidden", false);
     gallery.setAttribute("aria-hidden", false);
-    header.setAttribute("aria-hidden", false);
+    modalHeader.setAttribute("aria-hidden", false);
     containerLike.setAttribute("aria-hidden", false);
   }
 };
 
+function getDataForLightbox(media, tagName) {
+  const header = document.createElement('h4');
+  const img = document.createElement('img');
+  const vid = document.createElement('video');
+  const source = document.createElement('source');
+  vid.appendChild(source);
+  lightbox.appendChild(header);
+  img.className = "lightbox__img";
+  vid.className = "lightbox__vid";
+  source.className = "lightbox__source";
+  header.className = "lightbox__header";
+  console.log("toto");
+
+  header.innerText = media.title;
+  if (tagName === "IMG") {
+
+    displayImageLightbox(media, img);
+
+  } else if (tagName === "VIDEO") {
+
+    displayVideoLightbox(media, vid, source);
+
+  }
+}
+
+function displayImageLightbox(media, img) {
+  const imageName = media.image;
+  const imageTitle = media.title;
+  const imageAuthor = media.authorName;
+  const imagePath = `assets/images/${imageAuthor}/${imageName}`;
+  img.className = "carousel";
+
+  img.setAttribute("src", imagePath);
+  img.setAttribute("alt", `open lightbox for ${media.title}`);
+  img.setAttribute("id", media.id);
+  img.setAttribute("name", imageTitle);
+  img.style.cursor = "pointer";
+
+  const header = document.querySelector('.lightbox__header');
+  lightbox.appendChild(header);
+  header.innerText = imageTitle;
+
+  lightboxDiv.setAttribute("class", "lightbox__media lightbox__image");
+  lightboxDiv.appendChild(img);
+}
+
+function displayVideoLightbox(media, vid, source) {
+  const videoName = media.video;
+  const videoTitle = media.title;
+  const videoAuthor = media.authorName;
+  const videoPath =`assets/images/${videoAuthor}/${videoName}`;
+
+  vid.className = "carousel";
+  source.className = "carousel";
+
+  source.setAttribute("src", videoPath);
+  source.setAttribute("type", "video/mp4");
+
+  vid.setAttribute("id", media.id);
+  vid.setAttribute("title", videoTitle);
+  source.setAttribute("id", `${media.id}source`);
+  vid.style.cursor = "pointer";
+  vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
+
+  const header = document.querySelector('.lightbox__header');
+  header.innerText = videoTitle;
+
+  vid.setAttribute("controls", "controls");
+  lightboxDiv.setAttribute("class", "lightbox__media lightbox__video");
+  lightboxDiv.appendChild(vid);
+}
 
 function displayLightbox(id, tagName, array) {
 
-  console.log(id, tagName, array);
   const medias = array.filter((media) => {
     // eslint-disable-next-line eqeqeq
     return media.id == id;
   });
-
   const media = medias[0];
-  console.log(media);
-
-  if (tagName === "IMG") {
-
-    const imageName = media.image;
-    const imageTitle = media.title;
-    const imageAuthor = media.authorName;
-    const imagePath = `assets/images/${imageAuthor}/${imageName}`;
-    const img = document.createElement('img');
-
-    img.setAttribute("src", imagePath);
-    img.setAttribute("alt", `open lightbox for ${media.title}`);
-    img.setAttribute("id", media.id);
-    img.setAttribute("name", imageTitle);
-    img.style.cursor = "pointer";
-    img.className = "photographer__media";
-
-    lightboxHeader.innerText = imageTitle;
-
-    lightboxDiv.setAttribute("class", "lightbox__media lightbox__image");
-    lightboxDiv.appendChild(img);
-
-  } else if (tagName === "VIDEO") {
-
-    const videoName = media.video;
-    const videoTitle = media.title;
-    const videoAuthor = media.authorName;
-    const videoPath =`assets/images/${videoAuthor}/${videoName}`;
-    const vid = document.createElement('video');
-
-    const source = document.createElement('source');
-    source.setAttribute("src", videoPath);
-    source.setAttribute("type", "video/mp4");
-
-    vid.setAttribute("id", media.id);
-    vid.setAttribute("title", videoTitle);
-    source.setAttribute("id", `${media.id}source`);
-    vid.appendChild(source);
-    vid.style.cursor = "pointer";
-    vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
-    vid.className = "photographer__media";
-    vid.setAttribute("controls", "controls");
-    lightboxDiv.setAttribute("class", "lightbox__media lightbox__video");
-    lightboxDiv.appendChild(vid);
 
 
-  }
+  getDataForLightbox(media, tagName);
 
   lightboxBackground.style.display = "block";
 
-  const index = array.indexOf(media);
+  let index = array.indexOf(media);
 
   previousSlide.addEventListener("click", () => {
-    displayPreviousImage(media.id, array, index);
+    // if() {
+    displayPreviousMedia(array, index);
+
+    // }
+
   });
   nextSlide.addEventListener("click", () => {
-    displayNextImage(media.id, array, index);
+    displayNextMedia(array, index);
   });
 
 }
 
-function displayNextImage(mediaId, array, index) {
-
-  // lightbox.remove();
-
-  if  (index === array.length) {
-    const goFirst = array[0];
-    console.log(goFirst);
-    const tagName = () => {
-      if(goFirst.image) {
-        return "IMG";
-      }
-      return "VIDEO";
-    };
-    return displayLightbox(goFirst.id, tagName(), array);
-  }
-  const goNext = array[index + 1];
-  const tagName = () => {
-    if(goNext.image) {
-      return "IMG";
+const clearLightbox = () => {
+  const lightboxMedia = document.querySelector(".lightbox__media");
+  const lightboxHeader = document.querySelector(".lightbox__header");
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
     }
-    return "VIDEO";
-  };
+  }
+  removeAllChildNodes(lightboxMedia);
+  lightboxHeader.remove();
+};
 
-  displayLightbox(goNext.id, tagName(), array);
+function getTagName(media) {
+  if(media.image) {
+    return "IMG";
+  }
+  return "VIDEO";
 
 }
 
-function displayPreviousImage(mediaId, array, index) {
 
-  // lightbox.remove();
+function displayPreviousMedia(array, index) {
+  let newIndex = index;
+  let newMedia;
+
+  clearLightbox();
 
   if  (index === 0) {
-    console.log(array.length);
-    const goLast = array[array.length - 1];
-    console.log({goLast});
-    const tagName = () => {
-      if(goLast.image) {
-        return "IMG";
-      }
-      return "VIDEO";
-    };
-    return displayLightbox(goLast.id, tagName(), array);
+    newMedia = array[array.length - 1];
+    const tagName = getTagName(newMedia);
+    newIndex = array.length;
+
+    getDataForLightbox(newMedia, tagName);
+
+  } else {
+    newMedia = array[index - 1];
+    const tagName = getTagName(newMedia);
+    newIndex --;
+
+    getDataForLightbox(newMedia, tagName);
+
   }
-  const goPrevious = array[index - 1];
-  console.log(goPrevious);
-  const tagName = () => {
-    if(goPrevious.image) {
-      return "IMG";
-    }
-    return "VIDEO";
-  };
 
-  displayLightbox(goPrevious.id, tagName(), array);
-
+  previousSlide.addEventListener("click", () => {
+    displayPreviousMedia(array, newIndex);
+  });
+  nextSlide.addEventListener("click", () => {
+    displayNextMedia(array, newIndex);
+  });
 }
+
+function displayNextMedia(array, index) {
+  let newIndex = index;
+  let newMedia;
+
+  clearLightbox();
+
+  if  (index === array.length - 1) {
+    newMedia = array[0];
+    const tagName = getTagName(newMedia);
+    newIndex = 0;
+
+
+    getDataForLightbox(newMedia, tagName);
+  } else {
+    newMedia = array[index + 1];
+    const tagName = getTagName(newMedia);
+    newIndex ++;
+
+    getDataForLightbox(newMedia, tagName);
+  }
+
+
+  previousSlide.addEventListener("click", () => {
+    displayPreviousMedia(array, newIndex);
+  });
+  nextSlide.addEventListener("click", () => {
+    displayNextMedia(array, newIndex);
+  });
+}
+
+
+// function ChangeAttributeForImage(media, lightboxImg) {
+
+//   lightboxImg.setAttribute("src", `assets/images/${media.authorName}/${media.image}`);
+// }
+
+// function ChangeAttributeForVideo(media, lightboxVid, lightboxSource) {
+//   lightboxSource.setAttribute("src", `assets/images/${media.authorName}/${media.video}`);
+//   lightboxSource.setAttribute("type", "video/mp4");
+//   lightboxVid.setAttribute("id", media.id);
+//   lightboxVid.setAttribute("title", media.title);
+//   lightboxVid.setAttribute("controls", "controls");
+// }
 
 // window.addEventListener("keyboard", (event) => {
 //   if (event.key === "ArrowLeft") {
@@ -336,11 +405,13 @@ function displayPreviousImage(mediaId, array, index) {
 
 function closeLightbox() {
   lightboxBackground.style.display = "none";
+  clearLightbox();
 }
 
 const closeLightboxModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
     lightboxBackground.style.display = "none";
+    clearLightbox();
   }
 };
 
