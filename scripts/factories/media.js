@@ -23,6 +23,11 @@ function mediaFactory(data) {
   const videos = medias.filter(filterOnlyVideos);
 
   const imgs = images.map((image) => {
+    image.authorName = name;
+    return (image);
+  });
+
+  const imageArticles = images.map((image) => {
     const imageArticle = document.createElement('article');
     const div = document.createElement('div');
     const imageName = image.image;
@@ -31,20 +36,28 @@ function mediaFactory(data) {
     const img = document.createElement('img');
     const title = document.createElement('h3');
     title.textContent = imageTitle;
+    title.className = "media__title";
     img.setAttribute("src", imagePath);
     img.setAttribute("alt", `open lightbox for ${image.title}`);
     img.setAttribute("id", image.id);
+    img.setAttribute("name", imageTitle);
     img.style.cursor = "pointer";
     img.className = "photographer__media";
     imageArticle.className = "media__container";
     imageArticle.appendChild(img);
     imageArticle.appendChild(div);
     div.appendChild(title);
-    // link.setAttribute("onclick", `displayLightbox(${imagePath},${img.id})`);
     return (imageArticle);
   });
 
+
+
   const vids = videos.map((video) => {
+    video.authorName = name;
+    return (video);
+  });
+
+  const videoArticles = videos.map((video) => {
     const videoArticle = document.createElement('article');
     const div = document.createElement('div');
     const videoName = video.video;
@@ -53,30 +66,34 @@ function mediaFactory(data) {
     const vid = document.createElement('video');
     const title = document.createElement('h3');
     title.textContent = videoTitle;
+    title.className = "media__title";
     const source = document.createElement('source');
     source.setAttribute("src", videoPath);
     source.setAttribute("type", "video/mp4");
-    vid.setAttribute("controls", "controls");
+    // problème, on ne peut plus lire la vidéo depuis la fiche photographe sans ouvrir la modale
+    // vid.setAttribute("controls", "controls");
     vid.setAttribute("id", video.id);
+    vid.setAttribute("title", videoTitle);
     source.setAttribute("id", `${video.id}source`);
     vid.appendChild(source);
     vid.style.cursor = "pointer";
-    vid.setAttribute("aria-label", `open lightbox for ${video.title}`);
+    vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
     vid.className = "photographer__media";
     videoArticle.className = "media__container";
     videoArticle.appendChild(vid);
     videoArticle.appendChild(div);
     div.appendChild(title);
-    // link.setAttribute("onclick", `displayLightbox(${vid.id})`);
+
     return (videoArticle);
   });
 
-  function getUserPhotographs() {
-    return (imgs);
+  function getUserPhotographArticles() {
+    return (imageArticles);
   }
-  function getUserVideos() {
-    return (vids);
+  function getUserVideoArticles() {
+    return (videoArticles);
   }
 
-  return { name, imgs, vids, getUserPhotographs, getUserVideos };
+
+  return { name, imgs, vids, getUserPhotographArticles, getUserVideoArticles };
 }

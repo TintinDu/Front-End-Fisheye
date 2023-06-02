@@ -6,11 +6,11 @@ const gallery = document.querySelector(".gallery");
 const containerLike = document.querySelector(".container__like");
 const photographerMedias = document.querySelectorAll(".photographer__media");
 const contactModal = document.getElementById("contact_modal");
-const lightboxModal = document.getElementById("lightbox");
 const contactBackground = document.querySelector(".contactBackground");
 const lightboxBackground = document.querySelector(".lightboxBackground");
-// const modalMedia = document.querySelector("#lightbox");
-const mediaLinks = document.querySelectorAll(".media__link");
+const lightbox = document.querySelector("#lightbox");
+const lightboxDiv = document.querySelector(".lightbox__container");
+const lightboxHeader = document.querySelector(".lightbox__header");
 const form = document.querySelector("#contactForm");
 const formD = document.querySelectorAll(".formData");
 const firstName = document.querySelector("#firstname");
@@ -28,6 +28,8 @@ const inputEmail = document.querySelector(".parentEmail > input");
 const parentMessage = document.querySelector(".parentMessage");
 const inputMessage = document.querySelector(".parentMessage > textarea");
 const btnClose = document.querySelector(".btn-close");
+const previousSlide = document.querySelector('.left-arrow');
+const nextSlide = document.querySelector('.right-arrow');
 
 const nameRegex = new RegExp("[a-zA-ZÀ-ÖØ-öø-ÿ-]{2,15}");
 const emailRegex = new RegExp("[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,13}");
@@ -194,43 +196,143 @@ const closeContactModalWithEsc = (event) =>  {
   }
 };
 
-function displayLightbox(tag, id) {
+
+function displayLightbox(id, tagName, array) {
+
+  console.log(id, tagName, array);
+  const medias = array.filter((media) => {
+    // eslint-disable-next-line eqeqeq
+    return media.id == id;
+  });
+
+  const media = medias[0];
+  console.log(media);
+
+  if (tagName === "IMG") {
+
+    const imageName = media.image;
+    const imageTitle = media.title;
+    const imageAuthor = media.authorName;
+    const imagePath = `assets/images/${imageAuthor}/${imageName}`;
+    const img = document.createElement('img');
+
+    img.setAttribute("src", imagePath);
+    img.setAttribute("alt", `open lightbox for ${media.title}`);
+    img.setAttribute("id", media.id);
+    img.setAttribute("name", imageTitle);
+    img.style.cursor = "pointer";
+    img.className = "photographer__media";
+
+    lightboxHeader.innerText = imageTitle;
+
+    lightboxDiv.setAttribute("class", "lightbox__media lightbox__image");
+    lightboxDiv.appendChild(img);
+
+  } else if (tagName === "VIDEO") {
+
+    const videoName = media.video;
+    const videoTitle = media.title;
+    const videoAuthor = media.authorName;
+    const videoPath =`assets/images/${videoAuthor}/${videoName}`;
+    const vid = document.createElement('video');
+
+    const source = document.createElement('source');
+    source.setAttribute("src", videoPath);
+    source.setAttribute("type", "video/mp4");
+
+    vid.setAttribute("id", media.id);
+    vid.setAttribute("title", videoTitle);
+    source.setAttribute("id", `${media.id}source`);
+    vid.appendChild(source);
+    vid.style.cursor = "pointer";
+    vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
+    vid.className = "photographer__media";
+    vid.setAttribute("controls", "controls");
+    lightboxDiv.setAttribute("class", "lightbox__media lightbox__video");
+    lightboxDiv.appendChild(vid);
+
+
+  }
+
   lightboxBackground.style.display = "block";
 
-  if(tag === "IMG") {
-    const imageToOpen = document.getElementById(id);
-    const img = document.createElement("img");
-    const div = document.createElement("div");
-    const h4 = document.createElement("h4");
-    img.src = imageToOpen.src;
-    img.setAttribute('id', id);
-    h4.innerText = "toto";
-    h4.className = "lightbox__header";
-    div.setAttribute("class", "lightbox__media lightbox__image");
-    div.appendChild(img);
-    lightboxModal.appendChild(div);
-    lightboxModal.appendChild(h4);
-  }
+  const index = array.indexOf(media);
 
-  if(tag === "VIDEO") {
-    const sourceToOpen = document.getElementById(`${id}source`);
-    const vid = document.createElement("video");
-    const source = document.createElement("source");
-    const div = document.createElement("div");
-    const h4 = document.createElement("h4");
-    source.src = sourceToOpen.src;
-    source.setAttribute('id', id);
-    h4.innerText = "toto";
-    h4.className = "lightbox__header";
-    vid.appendChild(source);
-    vid.setAttribute("controls", "controls");
-    div.setAttribute("class", "lightbox__media lightbox__video");
-    div.appendChild(vid);
-    lightboxModal.appendChild(div);
-    lightboxModal.appendChild(h4);
-  }
+  previousSlide.addEventListener("click", () => {
+    displayPreviousImage(media.id, array, index);
+  });
+  nextSlide.addEventListener("click", () => {
+    displayNextImage(media.id, array, index);
+  });
 
 }
+
+function displayNextImage(mediaId, array, index) {
+
+  // lightbox.remove();
+
+  if  (index === array.length) {
+    const goFirst = array[0];
+    console.log(goFirst);
+    const tagName = () => {
+      if(goFirst.image) {
+        return "IMG";
+      }
+      return "VIDEO";
+    };
+    return displayLightbox(goFirst.id, tagName(), array);
+  }
+  const goNext = array[index + 1];
+  const tagName = () => {
+    if(goNext.image) {
+      return "IMG";
+    }
+    return "VIDEO";
+  };
+
+  displayLightbox(goNext.id, tagName(), array);
+
+}
+
+function displayPreviousImage(mediaId, array, index) {
+
+  // lightbox.remove();
+
+  if  (index === 0) {
+    console.log(array.length);
+    const goLast = array[array.length - 1];
+    console.log({goLast});
+    const tagName = () => {
+      if(goLast.image) {
+        return "IMG";
+      }
+      return "VIDEO";
+    };
+    return displayLightbox(goLast.id, tagName(), array);
+  }
+  const goPrevious = array[index - 1];
+  console.log(goPrevious);
+  const tagName = () => {
+    if(goPrevious.image) {
+      return "IMG";
+    }
+    return "VIDEO";
+  };
+
+  displayLightbox(goPrevious.id, tagName(), array);
+
+}
+
+// window.addEventListener("keyboard", (event) => {
+//   if (event.key === "ArrowLeft") {
+//     displayNextImage(id);
+//   } else if (event.key === "ArrowRight") {
+//     displayPreviousImage(id);
+//   }
+// });
+
+
+
 
 function closeLightbox() {
   lightboxBackground.style.display = "none";
@@ -264,16 +366,5 @@ message.addEventListener("change", validateOnChange("#message"));
 
 contactBtn.addEventListener("click", sendContactForm());
 
-// mediaLinks.forEach(media => {
-//   media.addEventListener("click", displayLightbox());
-// });
-
-// photographerMedias.forEach(media => {
-//   media.addEventListener("click", (e) => {
-//     console.log("event", e);
-//   });
-// });
-
-
-
 window.addEventListener("keydown", closeContactModalWithEsc);
+window.addEventListener("keydown", closeLightboxModalWithEsc);

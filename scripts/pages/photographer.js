@@ -34,8 +34,10 @@ async function displayData(data) {
   const userHeaderDOM = photographerModel.getUserHeaderDOM();
   const userAvatar = photographerModel.getUserAvatar();
   const userPrice = photographerModel.getUserPrice();
-  const userPhotos = mediaModel.getUserPhotographs();
-  const userVideos = mediaModel.getUserVideos();
+  const userPhotoArticles = mediaModel.getUserPhotographArticles();
+  const userVideoArticles = mediaModel.getUserVideoArticles();
+  const userPhotoCarousel = mediaModel.imgs;
+  const userVideoCarousel = mediaModel.vids;
 
   const modalHeader = document.querySelectorAll(".modal__header > h2");
   modalHeader.innerHTML = "Contactez-moi" + "<br>" + data.photographer.name;
@@ -43,24 +45,20 @@ async function displayData(data) {
   photographerHeader.appendChild(userHeaderDOM);
   photographerAvatar.appendChild(userAvatar);
   containerLike.appendChild(userPrice);
-  userPhotos.map((userMedia) => {
+  userPhotoArticles.map((userMedia) => {
     mediasSection.appendChild(userMedia);
   });
-  userVideos.map((userVideo) => {
+  userVideoArticles.map((userVideo) => {
     mediasSection.appendChild(userVideo);
   });
 
   // lightbox
-  const photos = document.querySelectorAll(".photographer__media");
+  const medias = document.querySelectorAll(".photographer__media");
 
-  console.log(photos);
 
-  photos.forEach((photo)=> {
-    photo.addEventListener("click", (e) => {
-      console.log("event", e);
-      console.log("event2", e.target.tagName);
-      console.log("event2", e.target.id);
-      displayLightbox(e.target.tagName, e.target.id);
+  medias.forEach((media) => {
+    media.addEventListener("click", () => {
+      displayLightbox(media.id, media.tagName, userPhotoCarousel.concat(userVideoCarousel) );
     });
   });
 
@@ -69,11 +67,7 @@ async function displayData(data) {
 async function initializeOnePhotographer() {
   const photographer = await getOnePhotographer();
   displayData(photographer);
-
 }
 
 
 initializeOnePhotographer();
-
-
-console.log(document);
