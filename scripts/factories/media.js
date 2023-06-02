@@ -23,6 +23,11 @@ function mediaFactory(data) {
   const videos = medias.filter(filterOnlyVideos);
 
   const imgs = images.map((image) => {
+    image.authorName = name;
+    return (image);
+  });
+
+  const imageArticles = images.map((image) => {
     const imageArticle = document.createElement('article');
     const div = document.createElement('div');
     const imageName = image.image;
@@ -45,7 +50,14 @@ function mediaFactory(data) {
     return (imageArticle);
   });
 
+
+
   const vids = videos.map((video) => {
+    video.authorName = name;
+    return (video);
+  });
+
+  const videoArticles = videos.map((video) => {
     const videoArticle = document.createElement('article');
     const div = document.createElement('div');
     const videoName = video.video;
@@ -58,7 +70,8 @@ function mediaFactory(data) {
     const source = document.createElement('source');
     source.setAttribute("src", videoPath);
     source.setAttribute("type", "video/mp4");
-    vid.setAttribute("controls", "controls");
+    // problème, on ne peut plus lire la vidéo depuis la fiche photographe sans ouvrir la modale
+    // vid.setAttribute("controls", "controls");
     vid.setAttribute("id", video.id);
     vid.setAttribute("title", videoTitle);
     source.setAttribute("id", `${video.id}source`);
@@ -70,15 +83,17 @@ function mediaFactory(data) {
     videoArticle.appendChild(vid);
     videoArticle.appendChild(div);
     div.appendChild(title);
+
     return (videoArticle);
   });
 
-  function getUserPhotographs() {
-    return (imgs);
+  function getUserPhotographArticles() {
+    return (imageArticles);
   }
-  function getUserVideos() {
-    return (vids);
+  function getUserVideoArticles() {
+    return (videoArticles);
   }
 
-  return { name, imgs, vids, getUserPhotographs, getUserVideos };
+
+  return { name, imgs, vids, getUserPhotographArticles, getUserVideoArticles };
 }

@@ -91,21 +91,24 @@
 }
 
 #lightbox {
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 984px;
 }
 
-/* .lightbox__media {
- 
-} */
-
 .lightbox__media > img {
   width: 1050px;
   height: 900px;
   object-fit: cover;
+  border-radius: 5px;
+}
+
+.lightbox__media > video {
+  width: 1050px;
+  height: 900px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .lightbox__header {
@@ -277,7 +280,7 @@ form input {
   list-style: none;
 }
 
-.lightbox__slide {
+.lightbox__slide--hidden {
   display: none;
 }
 
