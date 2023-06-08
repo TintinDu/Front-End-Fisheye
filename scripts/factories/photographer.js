@@ -39,6 +39,15 @@ function photographerFactoryPhotographer(data) {
 
   const { name, portrait, city, price, country, tagline} = data.photographer;
   const picture = `assets/photographers/${portrait}`;
+  const photographerMedias = data.photographerMedia;
+
+  const likesArray = photographerMedias.map((media) => {
+    return media.likes;
+  });
+
+  const likes = likesArray.reduce((acc, currentValue) => {
+    return acc + currentValue;
+  }, 0);
 
   function getUserHeaderDOM() {
     const flexbox = document.createElement('div');
@@ -77,6 +86,18 @@ function photographerFactoryPhotographer(data) {
     return (p);
   }
 
+  function getUserLikes() {
+    const div = document.createElement('div');
+    div.className = "likes__total";
+    const p = document.createElement('p');
+    const heart = document.createElement('img');
+    div.appendChild(p);
+    div.appendChild(heart);
+    p.textContent = likes;
+    p.className = "total-likes";
+    heart.src = "assets/icons/heart.svg";
+    return (div);
+  }
 
-  return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice};
+  return { name, picture, getUserHeaderDOM, getUserAvatar, getUserPrice, getUserLikes};
 }
