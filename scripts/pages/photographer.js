@@ -64,6 +64,17 @@ async function displayData(data) {
     });
   });
 
+  // likes
+  // const hearts = document.querySelectorAll('.media__heart');
+
+  // console.log(data);
+
+  // hearts.forEach((heart) => {
+  //   heart.addEventListener("click", () => {
+
+  //   });
+  // });
+
 }
 
 async function initializeOnePhotographer() {

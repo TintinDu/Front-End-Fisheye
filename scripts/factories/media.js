@@ -42,6 +42,7 @@ function mediaFactory(data) {
     likes.className = "media__number";
     miniDiv.className = "media__likes";
     heart.setAttribute("src", "assets/icons/heart.svg");
+    heart.className = "media__heart";
     title.textContent = imageTitle;
     title.className = "media__title";
     div.className = "title__container";
@@ -83,6 +84,7 @@ function mediaFactory(data) {
     likes.className = "media__number";
     miniDiv.className = "media__likes";
     heart.setAttribute("src", "assets/icons/heart.svg");
+    heart.className = "media__heart";
     title.textContent = videoTitle;
     title.className = "media__title";
     div.className = "title__container";
