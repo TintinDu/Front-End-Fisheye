@@ -33,6 +33,7 @@ async function displayData(data) {
   const mediaModel = mediaFactory(data);
   const userHeaderDOM = photographerModel.getUserHeaderDOM();
   const userAvatar = photographerModel.getUserAvatar();
+  const userLikes = photographerModel.getUserLikes();
   const userPrice = photographerModel.getUserPrice();
   const userPhotoArticles = mediaModel.getUserPhotographArticles();
   const userVideoArticles = mediaModel.getUserVideoArticles();
@@ -44,6 +45,7 @@ async function displayData(data) {
 
   photographerHeader.appendChild(userHeaderDOM);
   photographerAvatar.appendChild(userAvatar);
+  containerLike.appendChild(userLikes);
   containerLike.appendChild(userPrice);
   userPhotoArticles.map((userMedia) => {
     mediasSection.appendChild(userMedia);
@@ -55,7 +57,6 @@ async function displayData(data) {
   // lightbox
   const medias = document.querySelectorAll(".photographer__media");
   const userMediaArray = userPhotoCarousel.concat(userVideoCarousel);
-  console.log(userMediaArray);
 
   medias.forEach((media) => {
     media.addEventListener("click", () => {

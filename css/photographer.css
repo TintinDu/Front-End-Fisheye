@@ -73,7 +73,7 @@
   color: #312e2e;
   height: 984px;
   width: 1253px;
-  left: 101px;
+  margin: 0 auto;
   top: 40px;
   border-radius: 0px;
 }
@@ -209,6 +209,7 @@ form input {
   object-fit: cover;
   width: 350px;
   height: 200px;
+  border-radius: 5px;
 }
 
 .title__container {
@@ -216,13 +217,20 @@ form input {
   justify-content: space-between;
 }
 
+.media__number {
+  margin-right: 0.2em;
+}
+
 .media__likes {
   display: flex;
   align-self: flex-start;
+  font-weight: 700;
+  margin-right: 0.1em;
 }
 
 .media__title {
   color: #901c1c;
+  font-weight: 300;
 }
 
 .container__like {
@@ -235,6 +243,17 @@ form input {
   height: 89px;
   width: 376px;
   border-radius: 5px;
+}
+
+.likes__total {
+  display: flex;
+  align-self: center;
+  margin-left: 1.5em;
+  margin-right: auto;
+}
+
+.media__container {
+  color: #901c1c;
 }
 
 .container__like .price {

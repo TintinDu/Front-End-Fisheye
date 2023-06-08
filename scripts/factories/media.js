@@ -39,6 +39,7 @@ function mediaFactory(data) {
     const heart = document.createElement('img');
     const likes = document.createElement('p');
     likes.innerText = image.likes;
+    likes.className = "media__number";
     miniDiv.className = "media__likes";
     heart.setAttribute("src", "assets/icons/heart.svg");
     title.textContent = imageTitle;
@@ -79,7 +80,8 @@ function mediaFactory(data) {
     const heart = document.createElement('img');
     const likes = document.createElement('p');
     likes.innerText = video.likes;
-    miniDiv.className = "likes";
+    likes.className = "media__number";
+    miniDiv.className = "media__likes";
     heart.setAttribute("src", "assets/icons/heart.svg");
     title.textContent = videoTitle;
     title.className = "media__title";
