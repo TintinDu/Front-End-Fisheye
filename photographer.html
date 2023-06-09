@@ -36,7 +36,14 @@
     <main class="main">
       <section class="gallery">
         <h2 class="gallery__Title">Gallerie</h2>
-        <p role="input label">Trier par</p>
+        <div class="sortBy__container">
+          <p class="sortBy__label" role="input label">Trier par</p>
+          <div class="sortBy__dropdown">
+            <button class="dropdown__button current-filter">Popularité</button>
+            <button class="dropdown__button other-filter">Date</button>
+            <button class="dropdown__button other-filter">Titre</button>
+          </div>
+        </div>
         <div class="photograph-medias"></div>
       </section>
 
@@ -141,5 +148,6 @@
     <script src="scripts/factories/media.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/modal.js"></script>
+    <script src="scripts/utils/dropdown.js"></script>
   </body>
 </html>
