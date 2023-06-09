@@ -326,3 +326,64 @@ form input {
   margin-inline-end: 0;
   padding-inline-start: 0;
 }
+
+.sortBy__container {
+  display: flex;
+}
+
+.sortBy__label {
+  font-weight: 700;
+  margin-left: 5.2em;
+  font-size: larger;
+}
+
+.sortBy__dropdown {
+  color: white;
+  margin-left: 2em;
+  margin-top: 0.8em;
+  border-radius: 5px;
+  position: relative;
+  overflow: auto;
+  z-index: 1;
+}
+
+.sortBy__dropdown button {
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+  width: 170px;
+  cursor: pointer;
+  border: none;
+  background-color: #901c1c;
+}
+
+.dropdown__option {
+  padding: 0 30px 0 10px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  background: #901c1c;
+  border-top: #222 solid 1px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  order: 2;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dropdown__button {
+  display: block;
+  width: 100%;
+}
+
+.current-filter {
+  display: block;
+}
+
+.other-filter {
+  display: none;
+}

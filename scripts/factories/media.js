@@ -33,7 +33,7 @@ function mediaFactory(data) {
     const miniDiv = document.createElement('div');
     const imageName = image.image;
     const imageTitle = image.title;
-    const imagePath = `assets/images/${name}/${imageName}`;
+    const imagePath = `./assets/images/${name}/${imageName}`;
     const img = document.createElement('img');
     const title = document.createElement('h3');
     const heart = document.createElement('img');
@@ -41,7 +41,7 @@ function mediaFactory(data) {
     likes.innerText = image.likes;
     likes.className = "media__number";
     miniDiv.className = "media__likes";
-    heart.setAttribute("src", "assets/icons/heart.svg");
+    heart.setAttribute("src", "./assets/icons/heart.svg");
     heart.className = "media__heart";
     title.textContent = imageTitle;
     title.className = "media__title";
@@ -75,7 +75,7 @@ function mediaFactory(data) {
     const miniDiv = document.createElement('div');
     const videoName = video.video;
     const videoTitle = video.title;
-    const videoPath =`assets/images/${name}/${videoName}`;
+    const videoPath =`./assets/images/${name}/${videoName}`;
     const vid = document.createElement('video');
     const title = document.createElement('h3');
     const heart = document.createElement('img');
@@ -83,7 +83,7 @@ function mediaFactory(data) {
     likes.innerText = video.likes;
     likes.className = "media__number";
     miniDiv.className = "media__likes";
-    heart.setAttribute("src", "assets/icons/heart.svg");
+    heart.setAttribute("src", "./assets/icons/heart.svg");
     heart.className = "media__heart";
     title.textContent = videoTitle;
     title.className = "media__title";

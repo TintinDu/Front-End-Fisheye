@@ -75,9 +75,12 @@ async function displayData(data) {
       if (click === 0) {
         parseInt(heart.previousElementSibling.innerText++);
         click ++;
+        // sum ++
       } else if (click === 1) {
         parseInt(heart.previousElementSibling.innerText--);
         click --;
+        // sum --
+        // rendre sélectionnable les medias avec tab
       }
     });
   });
