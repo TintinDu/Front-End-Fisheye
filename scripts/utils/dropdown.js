@@ -2,6 +2,7 @@ const dropdownButtons = document.querySelectorAll(".dropdown__button");
 const currentDropdownButton = document.querySelector('.current-filter');
 const otherDropdownButtons = document.querySelectorAll('.other-filter');
 
+// jouer sur la valeur / id de chaque bouton
 
 currentDropdownButton.addEventListener("click", ()  => {
   openDropdown(currentDropdownButton, otherDropdownButtons);
