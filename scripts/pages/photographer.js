@@ -65,15 +65,22 @@ async function displayData(data) {
   });
 
   // likes
-  // const hearts = document.querySelectorAll('.media__heart');
+  const hearts = document.querySelectorAll('.media__heart');
 
-  // console.log(data);
+  let click = 0;
 
-  // hearts.forEach((heart) => {
-  //   heart.addEventListener("click", () => {
+  hearts.forEach((heart) => {
+    heart.addEventListener("click", () => {
 
-  //   });
-  // });
+      if (click === 0) {
+        parseInt(heart.previousElementSibling.innerText++);
+        click ++;
+      } else if (click === 1) {
+        parseInt(heart.previousElementSibling.innerText--);
+        click --;
+      }
+    });
+  });
 
 }
 

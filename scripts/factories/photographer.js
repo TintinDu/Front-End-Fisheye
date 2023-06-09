@@ -41,12 +41,8 @@ function photographerFactoryPhotographer(data) {
   const picture = `assets/photographers/${portrait}`;
   const photographerMedias = data.photographerMedia;
 
-  const likesArray = photographerMedias.map((media) => {
-    return media.likes;
-  });
-
-  const likes = likesArray.reduce((acc, currentValue) => {
-    return acc + currentValue;
+  const likes = photographerMedias.reduce((acc, media) => {
+    return acc + media.likes;
   }, 0);
 
   function getUserHeaderDOM() {
