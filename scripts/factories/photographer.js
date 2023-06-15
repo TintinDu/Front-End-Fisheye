@@ -38,7 +38,7 @@ function photographerFactoryHomepage(data) {
 function photographerFactoryPhotographer(data) {
 
   const { name, portrait, city, price, country, tagline} = data.photographer;
-  const picture = `assets/photographers/${portrait}`;
+  const picture = `./assets/photographers/${portrait}`;
   const photographerMedias = data.photographerMedia;
 
   const likes = photographerMedias.reduce((acc, media) => {
@@ -91,7 +91,8 @@ function photographerFactoryPhotographer(data) {
     div.appendChild(heart);
     p.textContent = likes;
     p.className = "total-likes";
-    heart.src = "assets/icons/heart.svg";
+    heart.src = "./assets/icons/heart.svg";
+    heart.alt = "total likes";
     return (div);
   }
 

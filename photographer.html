@@ -34,14 +34,21 @@
     </div>
 
     <main class="main">
+      <h1 class="hidden-header">Lightbox</h1>
       <section class="gallery">
         <h2 class="gallery__Title">Gallerie</h2>
         <div class="sortBy__container">
           <p class="sortBy__label" role="input label">Trier par</p>
           <div class="sortBy__dropdown">
-            <button class="dropdown__button current-filter">Popularité</button>
-            <button class="dropdown__button other-filter">Date</button>
-            <button class="dropdown__button other-filter">Titre</button>
+            <button class="dropdown__button current-filter" id="popularity">
+              Popularité
+            </button>
+            <button class="dropdown__button other-filter" id="date">
+              Date
+            </button>
+            <button class="dropdown__button other-filter" id="title">
+              Titre
+            </button>
           </div>
         </div>
         <div class="photograph-medias"></div>

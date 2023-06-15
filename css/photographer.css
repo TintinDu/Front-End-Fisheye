@@ -387,3 +387,9 @@ form input {
 .other-filter {
   display: none;
 }
+
+.hidden-header {
+  display: none;
+  position: absolute;
+  opacity: 0;
+}

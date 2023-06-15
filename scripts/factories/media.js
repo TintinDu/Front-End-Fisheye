@@ -43,6 +43,8 @@ function mediaFactory(data) {
     miniDiv.className = "media__likes";
     heart.setAttribute("src", "./assets/icons/heart.svg");
     heart.className = "media__heart";
+    heart.id = `heart${image.id}`;
+    heart.alt = `click to like ${image.title}`;
     title.textContent = imageTitle;
     title.className = "media__title";
     div.className = "title__container";
@@ -52,6 +54,7 @@ function mediaFactory(data) {
     img.setAttribute("name", imageTitle);
     img.style.cursor = "pointer";
     img.className = "photographer__media";
+    img.setAttribute("tabIndex", "1");
     imageArticle.className = "media__container";
     imageArticle.appendChild(img);
     imageArticle.appendChild(div);
@@ -85,20 +88,21 @@ function mediaFactory(data) {
     miniDiv.className = "media__likes";
     heart.setAttribute("src", "./assets/icons/heart.svg");
     heart.className = "media__heart";
+    heart.id = `heart${video.id}`;
+    heart.alt = `click to like ${video.title}`;
     title.textContent = videoTitle;
     title.className = "media__title";
     div.className = "title__container";
     const source = document.createElement('source');
     source.setAttribute("src", videoPath);
     source.setAttribute("type", "video/mp4");
-    // problème, on ne peut plus lire la vidéo depuis la fiche photographe sans ouvrir la modale
-    // vid.setAttribute("controls", "controls");
     vid.setAttribute("id", video.id);
     vid.setAttribute("title", videoTitle);
     source.setAttribute("id", `${video.id}source`);
     vid.appendChild(source);
     vid.style.cursor = "pointer";
     vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
+    vid.setAttribute("tabIndex", "1");
     vid.className = "photographer__media";
     videoArticle.className = "media__container";
     videoArticle.appendChild(vid);

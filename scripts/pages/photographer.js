@@ -40,6 +40,7 @@ async function displayData(data) {
   const userPhotoCarousel = mediaModel.imgs;
   const userVideoCarousel = mediaModel.vids;
 
+
   const modalHeader = document.querySelectorAll(".modal__header > h2");
   modalHeader.innerHTML = "Contactez-moi" + "<br>" + data.photographer.name;
 
@@ -62,10 +63,16 @@ async function displayData(data) {
     media.addEventListener("click", () => {
       displayLightbox(media.id, media.tagName, userMediaArray);
     });
+    media.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        displayLightbox(media.id, media.tagName, userMediaArray);
+      }
+    });
   });
 
   // likes
   const hearts = document.querySelectorAll('.media__heart');
+  const totalLikes = document.querySelector(".total-likes");
 
   let click = 0;
 
@@ -75,12 +82,13 @@ async function displayData(data) {
       if (click === 0) {
         parseInt(heart.previousElementSibling.innerText++);
         click ++;
-        // sum ++
+        totalLikes.innerText ++;
+
       } else if (click === 1) {
         parseInt(heart.previousElementSibling.innerText--);
         click --;
-        // sum --
-        // rendre sélectionnable les medias avec tab
+        totalLikes.innerText --;
+
       }
     });
   });
