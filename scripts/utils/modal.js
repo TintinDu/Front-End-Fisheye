@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 
+const hiddenHeader = document.querySelector(".hidden-header");
 const modalHeader = document.querySelector("header");
 const photographerHeader = document.querySelector(".photograph-header");
 const gallery = document.querySelector(".gallery");
@@ -200,7 +201,9 @@ const closeContactModalWithEsc = (event) =>  {
 };
 
 function getDataForLightbox(media, tagName) {
-  const header = document.createElement('h4');
+  hiddenHeader.style.display = "block";
+
+  const header = document.createElement('h2');
   const img = document.createElement('img');
   const vid = document.createElement('video');
   const source = document.createElement('source');
@@ -271,6 +274,10 @@ function displayVideoLightbox(media, vid, source) {
 }
 
 function displayLightbox(id, tagName, array) {
+  photographerHeader.setAttribute("aria-hidden", true);
+  gallery.setAttribute("aria-hidden", true);
+  modalHeader.setAttribute("aria-hidden", true);
+  containerLike.setAttribute("aria-hidden", true);
 
   const medias = array.filter((media) => {
     // eslint-disable-next-line eqeqeq
@@ -369,12 +376,18 @@ window.addEventListener("keydown", (event) => {
 
 
 function closeLightbox() {
+  hiddenHeader.style.display = "none";
   lightboxBackground.style.display = "none";
+  photographerHeader.setAttribute("aria-hidden", false);
+  gallery.setAttribute("aria-hidden", false);
+  modalHeader.setAttribute("aria-hidden", false);
+  containerLike.setAttribute("aria-hidden", false);
   clearLightbox();
 }
 
 const closeLightboxModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
+    hiddenHeader.style.display = "none";
     lightboxBackground.style.display = "none";
     clearLightbox();
   }
