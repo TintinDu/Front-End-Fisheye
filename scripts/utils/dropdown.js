@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const dropdownButtons = document.querySelectorAll(".dropdown__button");
 const displayDropdownButton = document.getElementById("displayDropdownBtn");
 const mainButton = document.querySelector(".main-button");
