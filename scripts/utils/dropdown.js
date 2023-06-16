@@ -1,8 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
+import { displayUserMediaArticles } from "../pages/photographer.js";
+
 const dropdownButtons = document.querySelectorAll(".dropdown__button");
 const displayDropdownButton = document.getElementById("displayDropdownBtn");
 const mainButton = document.querySelector(".main-button");
+
+mainButton.addEventListener("click", () => {
+  openDropdown();
+});
+
 
 //Delete media assets from the gallery section to clear space for sort output
 const clearGallery = () => {
@@ -23,7 +28,6 @@ function openDropdown() {
     button.className = "dropdown__button visible-button";
     button.addEventListener("click", (event) => {
       const newCurrentBtn = event.target;
-      // sort
       closeDropdown(newCurrentBtn);
     });
   });
@@ -31,8 +35,6 @@ function openDropdown() {
 }
 
 function closeDropdown(newFilter) {
-  const filter = newFilter.id;
-
 
   mainButton.innerHTML = newFilter.innerText;
   displayDropdownButton.className = "buttonOpenDropdown sortBy__dropdown";
@@ -43,7 +45,7 @@ function closeDropdown(newFilter) {
   });
 }
 
-function sortBy(data, filter) {
+export const sortBy = (data, filter) => {
   clearGallery();
   let newData = data;
   const medias = data.photographerMedia;
@@ -66,4 +68,4 @@ function sortBy(data, filter) {
     newData = {photographer: photographer, photographerMedia: mediasSorted};
     return displayUserMediaArticles(newData);
   }
-}
+};

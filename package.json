@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/TintinDu/Front-End-Fisheye.git"
   },
-  "author": "",
+  "author": "Martin DUBOIS",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TintinDu/Front-End-Fisheye/issues"
@@ -24,9 +24,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^8.39.0",
     "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-json": "^3.1.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
     "yorkie": "^2.0.0"
   }
 }

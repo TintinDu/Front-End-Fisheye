@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-function mediaFactory(data) {
+export default function mediaFactory(data) {
   const {name} = data.photographer;
   const medias = data.photographerMedia;
 
@@ -56,7 +55,7 @@ function mediaFactory(data) {
       img.setAttribute("name", imageTitle);
       img.style.cursor = "pointer";
       img.className = "photographer__media";
-      img.setAttribute("tabIndex", "1");
+      img.setAttribute("tabIndex", "0");
       mediaArticle.className = "media__container";
       mediaArticle.appendChild(img);
       mediaArticle.appendChild(div);
@@ -95,7 +94,7 @@ function mediaFactory(data) {
       vid.appendChild(source);
       vid.style.cursor = "pointer";
       vid.setAttribute("aria-label", `open lightbox for ${videoTitle}`);
-      vid.setAttribute("tabIndex", "1");
+      vid.setAttribute("tabIndex", "0");
       vid.className = "photographer__media";
       mediaArticle.className = "media__container";
       mediaArticle.appendChild(vid);
