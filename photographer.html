@@ -39,14 +39,22 @@
         <h2 class="gallery__Title">Gallerie</h2>
         <div class="sortBy__container">
           <p class="sortBy__label" role="input label">Trier par</p>
-          <div class="sortBy__dropdown">
-            <button class="dropdown__button current-filter" id="popularity">
+          <div
+            class="buttonOpenDropdown sortBy__dropdown"
+            id="displayDropdownBtn"
+          >
+            <button class="main-button" onclick="openDropdown()">
               Popularité
             </button>
-            <button class="dropdown__button other-filter" id="date">
+          </div>
+          <div class="sortBy__dropdown">
+            <button class="dropdown__button hidden-button" id="Popularité">
+              Popularité
+            </button>
+            <button class="dropdown__button hidden-button" id="Date">
               Date
             </button>
-            <button class="dropdown__button other-filter" id="title">
+            <button class="dropdown__button hidden-button" id="Titre">
               Titre
             </button>
           </div>

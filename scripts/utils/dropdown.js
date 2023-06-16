@@ -1,39 +1,68 @@
+/* eslint-disable no-unused-vars */
 const dropdownButtons = document.querySelectorAll(".dropdown__button");
-const currentDropdownButton = document.querySelector('.current-filter');
-const otherDropdownButtons = document.querySelectorAll('.other-filter');
+const displayDropdownButton = document.getElementById("displayDropdownBtn");
+const mainButton = document.querySelector(".main-button");
 
-// jouer sur la valeur / id de chaque bouton
+//Delete media assets from the gallery section to clear space for sort output
+const clearGallery = () => {
+  const gallerySection = document.querySelector(".photograph-medias");
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
 
-currentDropdownButton.addEventListener("click", ()  => {
-  openDropdown(currentDropdownButton, otherDropdownButtons);
-});
+  removeAllChildNodes(gallerySection);
+};
 
-function openDropdown(currentBtn, otherBtns) {
-  currentBtn.className = "dropdown__button other-filter";
-  currentBtn.style.display = "block";
-
-  otherBtns.forEach((button) => {
-    button.style.display = "block";
-  });
+function openDropdown() {
+  displayDropdownButton.className = "buttonOpenDropdown--hidden";
 
   dropdownButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      dropdownButtons.forEach((btn) => {
-
-        btn.style.display = "none";
-      },
-      );
-      button.className = "dropdown__button current-filter";
-      button.style.display = "block";
-
-      const newCurrentDropdownButton = document.querySelector('.current-filter');
-      const newOtherDropdownButtons = document.querySelectorAll('.other-filter');
-      newCurrentDropdownButton.addEventListener("click", ()  => {
-        openDropdown(newCurrentDropdownButton, newOtherDropdownButtons);
-      });
-      console.log("toto");
+    button.className = "dropdown__button visible-button";
+    button.addEventListener("click", (event) => {
+      const newCurrentBtn = event.target;
+      // sort
+      closeDropdown(newCurrentBtn);
     });
   });
 
+}
 
+function closeDropdown(newFilter) {
+  const filter = newFilter.id;
+
+
+  mainButton.innerHTML = newFilter.innerText;
+  displayDropdownButton.className = "buttonOpenDropdown sortBy__dropdown";
+
+  dropdownButtons.forEach((button) => {
+    button.className = "dropdown__button hidden-button";
+
+  });
+}
+
+function sortBy(data, filter) {
+  clearGallery();
+  let newData = data;
+  const medias = data.photographerMedia;
+  const photographer = data.photographer;
+
+  if (filter === "Titre") {
+    const mediasSorted = medias.sort((b, a) => (a.title < b.title) ? 1 : (a.title > b.title)? -1 : 0);
+    newData = {photographer: photographer, photographerMedia: mediasSorted};
+    return displayUserMediaArticles(newData);
+  }
+
+  if (filter === "Date") {
+    const mediasSorted = medias.sort((b, a) => (a.date < b.date) ? 1 : (a.date > b.date)? -1 : 0);
+    newData = {photographer: photographer, photographerMedia: mediasSorted};
+    return displayUserMediaArticles(newData);
+  }
+
+  if (filter === "Popularité") {
+    const mediasSorted = medias.sort((a, b) => (a.likes < b.likes) ? 1 : (a.likes > b.likes)? -1 : 0);
+    newData = {photographer: photographer, photographerMedia: mediasSorted};
+    return displayUserMediaArticles(newData);
+  }
 }
