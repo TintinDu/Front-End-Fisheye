@@ -13,7 +13,7 @@
 
   <body>
     <header>
-      <a href="index.html" role="navigation to homepage">
+      <a href="index.html" role="navigation to homepage" tabindex="0">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -24,9 +24,9 @@
     <div class="photograph-header">
       <div class="personal-informations"></div>
       <button
-        class="contact_button"
-        onclick="displayContactModal()"
+        class="contact_button button-open-modal"
         aria-label="Contact me"
+        tabindex="0"
       >
         Contactez-moi
       </button>
@@ -34,7 +34,8 @@
     </div>
 
     <main class="main">
-      <h1 class="hidden-header">Lightbox</h1>
+      <h1 class="hidden-header" id="lightbox-hidden-header">Lightbox</h1>
+      <h1 class="hidden-header" id="contact-hidden-header">Contact</h1>
       <section class="gallery">
         <h2 class="gallery__Title">Gallerie</h2>
         <div class="sortBy__container">
@@ -43,9 +44,7 @@
             class="buttonOpenDropdown sortBy__dropdown"
             id="displayDropdownBtn"
           >
-            <button class="main-button" onclick="openDropdown()">
-              Popularité
-            </button>
+            <button class="main-button">Popularité</button>
           </div>
           <div class="sortBy__dropdown">
             <button class="dropdown__button hidden-button" id="Popularité">
@@ -67,7 +66,6 @@
           <div class="lightbox__actions">
             <img
               src="assets/icons/close.svg"
-              onclick="closeLightbox()"
               alt="closeLightboxModal"
               class="btn-lightbox"
             />
@@ -100,7 +98,6 @@
               <h2 id="contactMe" tabindex="0">Contactez-moi</h2>
               <img
                 src="assets/icons/close.svg"
-                onclick="closeContactModal()"
                 alt="closeContactModal"
                 class="btn-close"
               />
@@ -159,10 +156,10 @@
     </main>
 
     <div class="container__like"></div>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/factories/media.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
-    <script src="scripts/utils/modal.js"></script>
-    <script src="scripts/utils/dropdown.js"></script>
+    <script type="module" src="scripts/factories/photographerPage.js"></script>
+    <script type="module" src="scripts/factories/media.js"></script>
+    <script type="module" src="scripts/pages/photographer.js"></script>
+    <script type="module" src="scripts/utils/modal.js"></script>
+    <script type="module" src="scripts/utils/dropdown.js"></script>
   </body>
 </html>

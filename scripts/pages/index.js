@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+import photographerFactoryHomepage from "../factories/photographerHomepage.js";
+
 async function getPhotographers() {
 
   const response = await fetch("./data/photographers.json");

@@ -11,13 +11,10 @@
     },
     "extends": [
       "eslint:recommended",
-      "plugin:import/recommended",
-      "plugin:json/recommended",
+      "plugin:json/recommended"
     ],
     "plugins": [
       "html",
-      "import",
-      "simple-import-sort",
       "json"
   ],
     "rules": {

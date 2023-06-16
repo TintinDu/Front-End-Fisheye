@@ -1,4 +1,8 @@
-/* eslint-disable no-undef */
+import photographerFactoryPhotographer from "../factories/photographerPage.js";
+import mediaFactory from "../factories/media.js";
+import { displayLightbox } from "../utils/modal.js";
+import { sortBy } from "../utils/dropdown.js";
+
 async function getOnePhotographer() {
 
   const url = new URL(window.location.href);
@@ -44,7 +48,7 @@ async function displayData(data) {
   containerLike.appendChild(userPrice);
 }
 
-function displayUserMediaArticles(data) {
+export const displayUserMediaArticles = (data) => {
 
   const mediasSection = document.querySelector(".photograph-medias");
   const mediaModel = mediaFactory(data);
@@ -99,7 +103,7 @@ function displayUserMediaArticles(data) {
       sortBy(data, button.id);
     });
   });
-}
+};
 
 async function initializeOnePhotographer() {
   const photographer = await getOnePhotographer();

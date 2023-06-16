@@ -1,25 +1,20 @@
-/* eslint-disable no-unused-vars */
-
-const hiddenHeader = document.querySelector(".hidden-header");
+const lightboxHiddenHeader = document.querySelector("#lightbox-hidden-header");
+const contactHiddenHeader = document.querySelector("#contact-hidden-header");
 const modalHeader = document.querySelector("header");
 const photographerHeader = document.querySelector(".photograph-header");
 const gallery = document.querySelector(".gallery");
 const containerLike = document.querySelector(".container__like");
-const photographerMedias = document.querySelectorAll(".photographer__media");
-const contactModal = document.getElementById("contact_modal");
 const contactBackground = document.querySelector(".contactBackground");
 const lightboxBackground = document.querySelector(".lightboxBackground");
 const lightbox = document.querySelector("#lightbox");
 const lightboxDiv = document.querySelector(".lightbox__media");
-const lightboxMedia = document.querySelector(".carousel");
-const lightboxHeader = document.querySelector(".lightbox__header");
 const form = document.querySelector("#contactForm");
-const formD = document.querySelectorAll(".formData");
 const firstName = document.querySelector("#firstname");
 const lastName = document.querySelector("#lastname");
 const email = document.querySelector("#email");
 const message = document.querySelector("#message");
-const contactBtn = document.querySelector(".contact_button");
+const contactBtnOpen = document.querySelector(".button-open-modal");
+const contactBtnSubmit = document.querySelector(".contact_button__modal");
 const modalTitle = document.querySelector("#contactMe");
 const parentFirst = document.querySelector(".parentFirst");
 const inputFirstName = document.querySelector(".parentFirst > input");
@@ -29,9 +24,10 @@ const parentEmail = document.querySelector(".parentEmail");
 const inputEmail = document.querySelector(".parentEmail > input");
 const parentMessage = document.querySelector(".parentMessage");
 const inputMessage = document.querySelector(".parentMessage > textarea");
-const btnClose = document.querySelector(".btn-close");
 const previousSlide = document.querySelector('.left-arrow');
 const nextSlide = document.querySelector('.right-arrow');
+const btnCloseContactModal = document.querySelector(".btn-close");
+const btnCloseLightbox = document.querySelector(".btn-lightbox");
 let currentIndex = 0;
 let userMedias = [];
 
@@ -173,25 +169,31 @@ function isValidOnSubmit() {
   return areAllInputsValidOnSubmit;
 }
 
-function displayContactModal() {
+const displayContactModal = () => {
+  contactHiddenHeader.style.display = "block";
   contactBackground.style.display = "block";
   modalTitle.focus();
   photographerHeader.setAttribute("aria-hidden", true);
   gallery.setAttribute("aria-hidden", true);
   modalHeader.setAttribute("aria-hidden", true);
   containerLike.setAttribute("aria-hidden", true);
-}
+  window.addEventListener("keydown", closeContactModalWithEsc);
+  btnCloseContactModal.addEventListener("click", closeContactModal);
+  contactBtnSubmit.addEventListener("click", sendContactForm);
+};
 
-function closeContactModal() {
+const closeContactModal = () => {
+  contactHiddenHeader.style.display = "none";
   contactBackground.style.display = "none";
   photographerHeader.setAttribute("aria-hidden", false);
   gallery.setAttribute("aria-hidden", false);
   modalHeader.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
-}
+};
 
 const closeContactModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
+    contactHiddenHeader.style.display = "none";
     contactBackground.style.display = "none";
     photographerHeader.setAttribute("aria-hidden", false);
     gallery.setAttribute("aria-hidden", false);
@@ -201,8 +203,6 @@ const closeContactModalWithEsc = (event) =>  {
 };
 
 function getDataForLightbox(media, tagName) {
-  hiddenHeader.style.display = "block";
-
   const header = document.createElement('h2');
   const img = document.createElement('img');
   const vid = document.createElement('video');
@@ -273,7 +273,8 @@ function displayVideoLightbox(media, vid, source) {
   lightboxDiv.appendChild(vid);
 }
 
-function displayLightbox(id, tagName, array) {
+export const displayLightbox = (id, tagName, array) => {
+  lightboxHiddenHeader.style.display = "block";
   photographerHeader.setAttribute("aria-hidden", true);
   gallery.setAttribute("aria-hidden", true);
   modalHeader.setAttribute("aria-hidden", true);
@@ -293,7 +294,9 @@ function displayLightbox(id, tagName, array) {
   currentIndex = array.indexOf(media);
   userMedias = array;
 
-}
+  btnCloseLightbox.addEventListener("click", closeLightbox);
+  window.addEventListener("keydown", closeLightboxModalWithEsc);
+};
 
 
 const clearLightbox = () => {
@@ -375,19 +378,19 @@ window.addEventListener("keydown", (event) => {
 });
 
 
-function closeLightbox() {
-  hiddenHeader.style.display = "none";
+export const closeLightbox = () => {
+  lightboxHiddenHeader.style.display = "none";
   lightboxBackground.style.display = "none";
   photographerHeader.setAttribute("aria-hidden", false);
   gallery.setAttribute("aria-hidden", false);
   modalHeader.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
   clearLightbox();
-}
+};
 
 const closeLightboxModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
-    hiddenHeader.style.display = "none";
+    lightboxHiddenHeader.style.display = "none";
     lightboxBackground.style.display = "none";
     clearLightbox();
   }
@@ -413,7 +416,5 @@ lastName.addEventListener("change", validateOnChange("#lastname"));
 email.addEventListener("change", validateOnChange("#email"));
 message.addEventListener("change", validateOnChange("#message"));
 
-contactBtn.addEventListener("click", sendContactForm());
-
-window.addEventListener("keydown", closeContactModalWithEsc);
-window.addEventListener("keydown", closeLightboxModalWithEsc);
+// listener displayContactModal
+contactBtnOpen.addEventListener("click", displayContactModal);
