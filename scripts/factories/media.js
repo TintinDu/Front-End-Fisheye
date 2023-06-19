@@ -43,11 +43,13 @@ export default function mediaFactory(data) {
       likes.className = "media__number";
       miniDiv.className = "media__likes";
       heart.setAttribute("src", "./assets/icons/heart.svg");
+      heart.setAttribute("tabIndex", "0");
       heart.className = "media__heart";
       heart.id = `heart${media.id}`;
       heart.alt = `click to like ${media.title}`;
       title.textContent = imageTitle;
       title.className = "media__title";
+      title.setAttribute("tabIndex", "0");
       div.className = "title__container";
       img.setAttribute("src", imagePath);
       img.setAttribute("alt", `open lightbox for ${media.title}`);
@@ -79,11 +81,13 @@ export default function mediaFactory(data) {
       likes.className = "media__number";
       miniDiv.className = "media__likes";
       heart.setAttribute("src", "./assets/icons/heart.svg");
+      heart.setAttribute("tabIndex", "0");
       heart.className = "media__heart";
       heart.id = `heart${media.id}`;
       heart.alt = `click to like ${media.title}`;
       title.textContent = videoTitle;
       title.className = "media__title";
+      title.setAttribute("tabIndex", "0");
       div.className = "title__container";
       const source = document.createElement('source');
       source.setAttribute("src", videoPath);

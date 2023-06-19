@@ -234,13 +234,14 @@ form input {
 }
 
 .container__like {
+  font-size: 1.3em;
   display: flex;
   position: fixed;
   left: 72vw;
   right: 50vw;
-  top: 93%;
+  top: 94%;
   background: #db8876;
-  height: 89px;
+  height: 71px;
   width: 376px;
   border-radius: 5px;
 }
@@ -253,7 +254,12 @@ form input {
 }
 
 .media__heart {
+  color: #901c1c;
   cursor: pointer;
+}
+
+.media__heart svg {
+  color: #901c1c;
 }
 
 .media__container {
@@ -274,7 +280,6 @@ form input {
 .formData__validation {
   content: attr(data-error);
   font-size: 1em;
-  /* color: #e54858; */
   color: #222222d6;
   display: block;
   margin-top: 7px;
@@ -347,7 +352,30 @@ form input {
   z-index: 1;
 }
 
-.sortBy__dropdown button {
+/* .sortBy__dropdown button {
+  font-weight: 600;
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+  width: 170px;
+  cursor: pointer;
+  border: none;
+  background-color: #901c1c;
+} */
+
+.button-open-dropdown {
+  font-size: 1em;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  border: none;
+  background-color: #901c1c;
+}
+
+.main-button {
+  border-radius: 5px;
+  display: block;
+  font-weight: 600;
   color: white;
   padding: 1em;
   text-decoration: none;
@@ -377,7 +405,18 @@ form input {
 
 .dropdown__button {
   display: block;
-  width: 100%;
+  font-weight: 600;
+  color: white;
+  padding: 1em;
+  text-decoration: none;
+  width: 170px;
+  cursor: pointer;
+  border: none;
+  background-color: #901c1c;
+}
+
+.button-open-dropdown br {
+  display: none;
 }
 
 .visible-button {
@@ -395,9 +434,50 @@ form input {
 }
 
 .buttonOpenDropdown {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow-open-dropdown {
+  width: 1em;
 }
 
 .buttonOpenDropdown--hidden {
   display: none;
 }
+
+.total-likes-heart {
+  margin-left: 0.4em;
+}
+
+#popular {
+  width: 170px;
+  font-weight: 600;
+  color: white;
+  padding-bottom: 1em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background-color: #901c1c;
+  border-bottom: white solid 1px;
+}
+
+#Date {
+  border-bottom: white solid 1px;
+}
+
+.dropdown__arrow {
+  position: absolute;
+  left: 128px;
+  top: 22px;
+}
+
+#Popularité {
+  padding: 1em 0;
+}
+
+#Date {
+  padding: 0.3em 0 1em;
+}
+
+/* régler les erreurs de la console */
