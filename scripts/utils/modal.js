@@ -179,8 +179,9 @@ const displayContactModal = () => {
   containerLike.setAttribute("aria-hidden", true);
   window.addEventListener("keydown", closeContactModalWithEsc);
   btnCloseContactModal.addEventListener("click", closeContactModal);
-  contactBtnSubmit.addEventListener("click", sendContactForm);
 };
+
+contactBtnSubmit.addEventListener("click", sendContactForm);
 
 const closeContactModal = () => {
   contactHiddenHeader.style.display = "none";
@@ -296,6 +297,20 @@ export const displayLightbox = (id, tagName, array) => {
 
   btnCloseLightbox.addEventListener("click", closeLightbox);
   window.addEventListener("keydown", closeLightboxModalWithEsc);
+  previousSlide.addEventListener("click", () => {
+    displayPreviousMedia(userMedias);
+  });
+  nextSlide.addEventListener("click", () => {
+    displayNextMedia(userMedias);
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      displayPreviousMedia(userMedias);
+    } else if (event.key === "ArrowRight") {
+      displayNextMedia(userMedias);
+    }
+  });
+
 };
 
 
@@ -362,20 +377,6 @@ function displayNextMedia(array) {
     getDataForLightbox(newMedia, tagName);
   }
 }
-
-previousSlide.addEventListener("click", () => {
-  displayPreviousMedia(userMedias);
-});
-nextSlide.addEventListener("click", () => {
-  displayNextMedia(userMedias);
-});
-window.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowLeft") {
-    displayPreviousMedia(userMedias);
-  } else if (event.key === "ArrowRight") {
-    displayNextMedia(userMedias);
-  }
-});
 
 
 export const closeLightbox = () => {

@@ -3,6 +3,7 @@ import { displayUserMediaArticles } from "../pages/photographer.js";
 const dropdownButtons = document.querySelectorAll(".dropdown__button");
 const displayDropdownButton = document.getElementById("displayDropdownBtn");
 const mainButton = document.querySelector(".main-button");
+const mainButtonDropdown = document.querySelector(".button-open-dropdown");
 
 mainButton.addEventListener("click", () => {
   openDropdown();
@@ -36,8 +37,8 @@ function openDropdown() {
 
 function closeDropdown(newFilter) {
 
-  mainButton.innerHTML = newFilter.innerText;
-  displayDropdownButton.className = "buttonOpenDropdown sortBy__dropdown";
+  mainButtonDropdown.innerText = newFilter.innerText;
+  displayDropdownButton.className = "buttonOpenDropdown sortBy__dropdown main-button";
 
   dropdownButtons.forEach((button) => {
     button.className = "dropdown__button hidden-button";

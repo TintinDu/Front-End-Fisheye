@@ -41,15 +41,25 @@
         <div class="sortBy__container">
           <p class="sortBy__label" role="input label">Trier par</p>
           <div
-            class="buttonOpenDropdown sortBy__dropdown"
+            class="buttonOpenDropdown sortBy__dropdown main-button"
             id="displayDropdownBtn"
           >
-            <button class="main-button">Popularité</button>
+            <button class="button-open-dropdown">Popularité</button>
+            <img
+              src="./assets/icons/arrowOpenDropdown.svg"
+              alt="open dropdown"
+              class="arrow-open-dropdown"
+            />
           </div>
           <div class="sortBy__dropdown">
-            <button class="dropdown__button hidden-button" id="Popularité">
-              Popularité
-            </button>
+            <div class="dropdown__button hidden-button" id="Popularité">
+              <button class="" id="popular">Popularité</button>
+              <img
+                class="dropdown__arrow"
+                src="./assets/icons/dropdownArrow.svg"
+                alt="close dropdown"
+              />
+            </div>
             <button class="dropdown__button hidden-button" id="Date">
               Date
             </button>
@@ -110,7 +120,7 @@
                   id="firstname"
                   name="firstname"
                   aria-required="true"
-                  tabindex="0"
+                  tabindex="1"
                 />
               </div>
               <div class="formData parentLast">
@@ -120,7 +130,7 @@
                   id="lastname"
                   name="lastname"
                   aria-required="true"
-                  tabindex="0"
+                  tabindex="1"
                 />
               </div>
               <div class="formData parentEmail">
@@ -130,7 +140,7 @@
                   id="email"
                   name="email"
                   aria-required="true"
-                  tabindex="0"
+                  tabindex="1"
                 />
               </div>
               <div class="formData parentMessage">
@@ -140,14 +150,14 @@
                   id="message"
                   name="message"
                   aria-required="true"
-                  tabindex="0"
+                  tabindex="1"
                 ></textarea>
               </div>
               <input
                 class="contact_button contact_button__modal"
                 type="submit"
                 value="Envoyer"
-                tabindex="0"
+                tabindex="1"
               />
             </form>
           </section>

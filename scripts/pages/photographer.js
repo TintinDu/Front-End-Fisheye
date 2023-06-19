@@ -92,6 +92,21 @@ export const displayUserMediaArticles = (data) => {
 
       }
     });
+    heart.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        if (click === 0) {
+          parseInt(heart.previousElementSibling.innerText++);
+          click ++;
+          totalLikes.innerText ++;
+
+        } else if (click === 1) {
+          parseInt(heart.previousElementSibling.innerText--);
+          click --;
+          totalLikes.innerText --;
+
+        }
+      }
+    });
   });
 
 

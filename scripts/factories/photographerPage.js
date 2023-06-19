@@ -54,8 +54,9 @@ const photographerFactoryPhotographer = data => {
     div.appendChild(heart);
     p.textContent = likes;
     p.className = "total-likes";
-    heart.src = "./assets/icons/heart.svg";
+    heart.src = "./assets/icons/blackHeart.svg";
     heart.alt = "total likes";
+    heart.className = "total-likes-heart";
     return (div);
   }
 
