@@ -30,6 +30,8 @@ const btnCloseContactModal = document.querySelector(".btn-close");
 const btnCloseLightbox = document.querySelector(".btn-lightbox");
 let currentIndex = 0;
 let userMedias = [];
+let isModalOpen = false;
+let isLightboxOpen = false;
 
 const nameRegex = new RegExp("[a-zA-ZÀ-ÖØ-öø-ÿ-]{2,15}");
 const emailRegex = new RegExp("[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,13}");
@@ -177,8 +179,11 @@ const displayContactModal = () => {
   gallery.setAttribute("aria-hidden", true);
   modalHeader.setAttribute("aria-hidden", true);
   containerLike.setAttribute("aria-hidden", true);
-  window.addEventListener("keydown", closeContactModalWithEsc);
-  btnCloseContactModal.addEventListener("click", closeContactModal);
+  isModalOpen = true;
+  if (isModalOpen) {
+    window.addEventListener("keydown", closeContactModalWithEsc);
+    btnCloseContactModal.addEventListener("click", closeContactModal);
+  }
 };
 
 contactBtnSubmit.addEventListener("click", sendContactForm);
@@ -190,6 +195,7 @@ const closeContactModal = () => {
   gallery.setAttribute("aria-hidden", false);
   modalHeader.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
+  isModalOpen = false;
 };
 
 const closeContactModalWithEsc = (event) =>  {
@@ -200,6 +206,7 @@ const closeContactModalWithEsc = (event) =>  {
     gallery.setAttribute("aria-hidden", false);
     modalHeader.setAttribute("aria-hidden", false);
     containerLike.setAttribute("aria-hidden", false);
+    isModalOpen = false;
   }
 };
 
@@ -295,21 +302,26 @@ export const displayLightbox = (id, tagName, array) => {
   currentIndex = array.indexOf(media);
   userMedias = array;
 
-  btnCloseLightbox.addEventListener("click", closeLightbox);
-  window.addEventListener("keydown", closeLightboxModalWithEsc);
-  previousSlide.addEventListener("click", () => {
-    displayPreviousMedia(userMedias);
-  });
-  nextSlide.addEventListener("click", () => {
-    displayNextMedia(userMedias);
-  });
-  window.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      displayPreviousMedia(userMedias);
-    } else if (event.key === "ArrowRight") {
-      displayNextMedia(userMedias);
-    }
-  });
+
+  isLightboxOpen = true;
+  if (isLightboxOpen) {
+    btnCloseLightbox.addEventListener("click", closeLightbox);
+    window.addEventListener("keydown", closeLightboxModalWithEsc);
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        displayPreviousMedia(userMedias);
+      } else if (event.key === "ArrowRight") {
+        displayNextMedia(userMedias);
+      }
+      previousSlide.addEventListener("click", () => {
+        displayPreviousMedia(userMedias);
+      });
+      nextSlide.addEventListener("click", () => {
+        displayNextMedia(userMedias);
+      });
+    });
+  }
+
 
 };
 
@@ -322,8 +334,10 @@ const clearLightbox = () => {
       parent.removeChild(parent.firstChild);
     }
   }
-  removeAllChildNodes(lightboxMedia);
-  lightboxHeader.remove();
+  if (isLightboxOpen) {
+    removeAllChildNodes(lightboxMedia);
+    lightboxHeader.remove();
+  }
 };
 
 function getTagName(media) {
@@ -387,6 +401,7 @@ export const closeLightbox = () => {
   modalHeader.setAttribute("aria-hidden", false);
   containerLike.setAttribute("aria-hidden", false);
   clearLightbox();
+  isLightboxOpen = false;
 };
 
 const closeLightboxModalWithEsc = (event) =>  {
@@ -394,6 +409,7 @@ const closeLightboxModalWithEsc = (event) =>  {
     lightboxHiddenHeader.style.display = "none";
     lightboxBackground.style.display = "none";
     clearLightbox();
+    isLightboxOpen = false;
   }
 };
 

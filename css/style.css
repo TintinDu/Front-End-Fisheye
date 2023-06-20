@@ -58,7 +58,6 @@ h1 {
   object-fit: cover;
   overflow-clip-margin: unset;
   box-shadow: 0px 2px 11px 3px grey;
-  /* faire dépasser l'image du cercle */
 }
 
 .photographer_section article p {
