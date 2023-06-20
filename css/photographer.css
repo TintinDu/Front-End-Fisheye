@@ -352,17 +352,6 @@ form input {
   z-index: 1;
 }
 
-/* .sortBy__dropdown button {
-  font-weight: 600;
-  color: white;
-  padding: 1em;
-  text-decoration: none;
-  width: 170px;
-  cursor: pointer;
-  border: none;
-  background-color: #901c1c;
-} */
-
 .button-open-dropdown {
   font-size: 1em;
   font-weight: 600;
@@ -375,11 +364,11 @@ form input {
 .main-button {
   border-radius: 5px;
   display: block;
-  font-weight: 600;
+  font-weight: 500;
   color: white;
   padding: 1em;
   text-decoration: none;
-  width: 170px;
+  width: 140px;
   cursor: pointer;
   border: none;
   background-color: #901c1c;
@@ -407,7 +396,7 @@ form input {
   display: block;
   font-weight: 600;
   color: white;
-  padding: 1em;
+  padding: 1.3em;
   text-decoration: none;
   width: 170px;
   cursor: pointer;
@@ -469,7 +458,7 @@ form input {
 .dropdown__arrow {
   position: absolute;
   left: 128px;
-  top: 22px;
+  top: 19px;
 }
 
 #Popularité {
