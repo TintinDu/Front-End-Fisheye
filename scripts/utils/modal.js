@@ -285,6 +285,7 @@ export const displayLightbox = (id, tagName, array) => {
   lightboxHiddenHeader.style.display = "block";
   photographerHeader.setAttribute("aria-hidden", true);
   gallery.setAttribute("aria-hidden", true);
+  gallery.style.display = "none";
   modalHeader.setAttribute("aria-hidden", true);
   containerLike.setAttribute("aria-hidden", true);
 
@@ -322,6 +323,9 @@ export const displayLightbox = (id, tagName, array) => {
     });
   }
 
+  const header = document.querySelector('.lightbox__header');
+  header.setAttribute("tabindex", "0");
+  header.focus();
 
 };
 
@@ -369,6 +373,10 @@ function displayPreviousMedia(array) {
     getDataForLightbox(newMedia, tagName);
 
   }
+
+  const header = document.querySelector('.lightbox__header');
+  header.setAttribute("tabindex", "0");
+  header.focus();
 }
 
 function displayNextMedia(array) {
@@ -390,10 +398,15 @@ function displayNextMedia(array) {
 
     getDataForLightbox(newMedia, tagName);
   }
+
+  const header = document.querySelector('.lightbox__header');
+  header.setAttribute("tabindex", "0");
+  header.focus();
 }
 
 
 export const closeLightbox = () => {
+  gallery.style.display = "block";
   lightboxHiddenHeader.style.display = "none";
   lightboxBackground.style.display = "none";
   photographerHeader.setAttribute("aria-hidden", false);
@@ -406,6 +419,7 @@ export const closeLightbox = () => {
 
 const closeLightboxModalWithEsc = (event) =>  {
   if (event.key === 'Escape') {
+    gallery.style.display = "block";
     lightboxHiddenHeader.style.display = "none";
     lightboxBackground.style.display = "none";
     clearLightbox();
