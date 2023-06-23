@@ -13,7 +13,7 @@
 
   <body>
     <header>
-      <a href="index.html" role="navigation to homepage" tabindex="0">
+      <a href="index.html" role="navigation to homepage" tabindex="1">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -26,7 +26,7 @@
       <button
         class="contact_button button-open-modal"
         aria-label="Contact me"
-        tabindex="0"
+        tabindex="1"
       >
         Contactez-moi
       </button>
@@ -72,22 +72,25 @@
       </section>
 
       <div class="lightboxBackground">
-        <div class="lightboxContent">
+        <div class="lightboxContent" role="dialog">
           <div class="lightbox__actions">
             <img
               src="assets/icons/close.svg"
               alt="closeLightboxModal"
               class="btn-lightbox"
+              tabindex="1"
             />
             <img
               src="assets/icons/leftVector.svg"
               alt="display previous photo"
               class="left-arrow"
+              tabindex="1"
             />
             <img
               src="assets/icons/rightVector.svg"
               alt="display next photo"
               class="right-arrow"
+              tabindex="1"
             />
           </div>
           <section id="lightbox">
@@ -105,7 +108,7 @@
             role="dialog"
           >
             <div class="modal__header">
-              <h2 id="contactMe" tabindex="0">Contactez-moi</h2>
+              <h2 id="contactMe" tabindex="1">Contactez-moi</h2>
               <img
                 src="assets/icons/close.svg"
                 alt="closeContactModal"
